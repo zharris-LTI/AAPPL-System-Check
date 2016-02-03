@@ -1,0 +1,219 @@
+<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+******************************************************************************************
+Description: This page performs the following checks on the client:
+	1) Browser Name and Version with OS
+	2) Screen Resolution
+	3) Javascript Enabled and Version
+	4) Cookies Enabled
+	5) Bandwidth Speed
+	6) Flash Player Installed and Version
+	7) Microphone Test
+	8) Target Language
+
+04/10/03 Olga Perrone, Original work
+06/16/09 Design by Smith Originals for AAPPL--http://aappl.lti-inc.net
+01/26/10 Updates for IE 6 issues
+04/21/10 Removed QuickTime
+******************************************************************************************
+-->
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+<META HTTP-EQUIV="expires"CONTENT="0">
+
+<link rel="stylesheet" href="css/system-check.css"/>	
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/system-check.js"></script>
+
+<script src="js/swfobject.js"></script>
+
+<TITLE>AAPPL Measure System Check</TITLE>
+
+</HEAD>
+<BODY>
+<TABLE align="center" cellspacing="0" cellpadding="0" class="mainTable">
+	<TR>
+		<TD class="tableHeaderImg">&nbsp;</TD>
+		<TD class="tableHeader" colspan="2">AAPPL Measure System Check<br />Is your system ready?</TD>
+		<TD class="tableHeader"></TD>
+	</TR>
+	<TR>
+		<TD class="keyRow" colspan="4" height="4"></TD>
+	</TR>
+	<TR>
+		<TD width="15%" class="columnHeader">CRITERIA</TD>
+		<TD width="35%" class="columnHeader">MINIMUM REQUIREMENTS</TD>
+		<TD width="35%" class="columnHeader">YOUR SYSTEM INFORMATION</TD>
+		<TD width="15%" class="columnHeader">MEETS REQUIREMENTS</TD>
+	</TR>
+	<TR>
+		<TD class="keyRow" colspan="3">
+			<DIV class="keyRow" id="errorMessageDiv">
+				<NOSCRIPT>
+				<h3>This page uses JavaScript to test your system</h3> 
+				<p>Please make sure that JavaScript is enabled in your browser and your browser is equal to or better than Netscape Navigator 3 or MS Internet Explorer 3.</p>
+				</NOSCRIPT>
+			</DIV>
+		</TD>
+		<TD class="keyCell"><img src="media/sc_key.gif" alt="System Check Key"></TD>
+	</TR>
+
+<!--******************************
+    ROW 1 - Browser
+    ******************************
+ 
+	<TR class="evenRow" id="row1">
+		<TD class="col1">Browser</TD>
+		<TD class="col2">
+			<DIV id="MainVersion"></DIV>
+		</TD>
+		<TD class="col3">
+			<DIV id="browserVersionDiv">&nbsp;</DIV>
+		</TD>
+		<TD class="col4" id="browserNameCheckImg">&nbsp;</TD>
+	</TR>
+	-->
+
+<!--******************************
+    ROW 5 - Bandwidth
+    ******************************-->
+ 
+	<TR class="oddRow" id="row5">
+		<TD class="col1">Bandwidth</TD>
+		<TD class="col2"><DIV>1000 kilobits per second,<br>per tester</DIV></TD>
+		<TD class="col3">
+			<DIV id="bandwidthDiv"><div id="progress"></div></DIV>
+		</TD>
+		<TD class="col4" id="bandwidthCheckImg">&nbsp;</TD>
+	</TR>
+			
+<!--******************************
+    ROW 6 - Ports
+    ******************************-->
+ 
+	<TR class="evenRow" id="row6">
+		<TD class="col1">Ports</TD>
+		<TD class="col2"><DIV><p>Port 1935. <br />Please conduct the Port test provided and look for "Success" for "RTMP Port 1935".  If your test for "RTMP Port 1935" fails, please contact your IT professional to have Port 1935 opened.</p></DIV></TD>
+		<TD class="col3">
+			<DIV>Are these ports open?&nbsp;<a href="#" class="passCheck">YES</a>&nbsp;<a href="#" class="failCheck">NO</a><br><br>
+				<a href="http://server1.actfltesting.org/FMSPortTester/AAPPLFMSPortTester.html" target="_blank">Test Your Ports</a>
+			</DIV>
+		</TD>
+		<TD class="col4" id="portsCheckImg">&nbsp;</TD>
+	</TR>
+			
+<!--******************************
+    ROW 7 - Flash Player
+    ******************************-->
+ 
+	<TR class="oddRow" id="row7">
+		<TD class="col1">Flash Player</TD>
+		<TD class="col2">
+			<DIV>Flash Player 10.0</DIV>
+		</TD>
+		<TD class="col3">
+			<div class="installFlash">
+				<p>You need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
+			</div>
+			<div class="upgradeFlash">
+				<p>Flash Player version <span id="version-number-low"></span> <br />You need to <a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
+			</div>
+			<div class="displayFlash">
+				<p>Flash Player version <span id="version-number"></span></p>
+			</div>
+		</TD>
+		<TD class="col4" id="flashCheckImg">&nbsp;</TD>
+	</TR>
+
+<!--******************************
+    ROW 8 - Microphone
+    ******************************-->
+ 
+	<TR class="evenRow" id="row8">
+		<TD class="col1">Microphone</TD>
+		<TD class="col2">
+			<DIV>A headset with microphone is required for the speaking component, while a headset is required for all components.</DIV>
+		</TD>
+		<TD class="col3">
+			<div class="displayFlash">
+				<a href="#" id="show_hideMicFlash">Start Microphone Test</a>
+				<DIV id="MicFlashDiv">
+					<p>To allow your microphone to be used, click 'Allow', if asked.</p>
+					<div id="micCheck">
+						<p>You do not have a current version of the Flash Player installed. This content requires Flash Player 10 or newer. <a href="http://www.adobe.com/go/getflashplayer" target="_blank">Go get the Flash Player</a> (free).</p>
+						<p>If you do have the current Flash Player, then JavaScript is not enabled in your Web browser. Please enable JavaScript to view this content.</p>
+					</div>
+					<p>Click the 'Configure' button, select the Remember check box and click the 'Close' button.</p>
+					<p>Does your microphone work? Do you see the color indicators moving? <a href="#" class="passCheck">YES</a> <a href="#" class="failCheck">NO</a></p>
+				</DIV>
+			</div>
+			<div class="installFlash">
+				<p>In order to test your microphone settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
+			</div>
+			<div class="upgradeFlash">
+				<p>In order to test your microphone settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
+			</div>			
+		</TD>
+		<TD class="col4" id="microphoneCheckImg">&nbsp;</TD>
+	</TR>
+<!--******************************
+    ROW 9 - MP3 Audio
+    ******************************-->
+	<TR class="oddRow" id="row9">
+		<TD class="col1">MP3 Audio</TD>
+		<TD class="col2">
+			<DIV>Your system must allow MP3 audio files to be played. Please test your system before proceeding into the test.</DIV>
+		</TD>
+		<TD class="col3">
+			<div class="displayFlash">
+				<p>Does MP3 play? <a href="#" class="passCheck">YES</a> <a href="#" class="failCheck">NO</a></p>
+				<div id="audioPlayer"></div> 
+			</div>
+			<div class="installFlash">
+				<p>In order to test your audio settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
+			</div>
+			<div class="upgradeFlash">
+				<p>In order to test your audio settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
+			</div>			
+		</TD>
+		<TD class="col4" id="MP3CheckImg">&nbsp;</TD>
+	</TR>
+
+<!--******************************
+    ROW 10 - Target Language
+    ******************************-->
+ 
+	<TR class="evenRow" id="row10">
+		<TD class="col1">Language Support</TD>
+		<TD class="col2">
+			<DIV>If writing is being assessed, the candidates will need to be able to type in the language.  Please test your system here before proceeding into the test.</DIV>
+		</TD>
+		<TD class="col3">
+			<div class="displayFlash">
+				<p>Can you type in the box below using the target language?&nbsp;<a href="#" class="passCheck">YES</a>&nbsp;<a href="#" class="failCheck">NO</a></p>
+				<p>Click on the buttons to change the direction of the text.</p>
+				<div id="keyboardCheck"></div>
+				<p>
+					See Keyboard Setup/Use Instructions<br />
+					<a href="http://symbolcodes.tlt.psu.edu/bylanguage/arabic.html#win" target="_blank">Arabic</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/chinese.html#keyboard" target="_blank">Chinese</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/french.html#winalt" target="_blank">French</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/german.html#winalt" target="_blank">German</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/russian.html#keyboard" target="_blank">Russian</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/spanish.html#winalt" target="_blank">Spanish</a>
+				</p>
+			</div>
+			<div class="installFlash">
+				<p>In order to test your keyboard you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
+			</div>
+			<div class="upgradeFlash">
+				<p>In order to test your keyboard you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
+			</div>			
+		</TD>
+		<TD class="col4" id="languageCheckImg">&nbsp;</TD>
+	</TR>	
+</TABLE>
+
+<p class="address">Copyright © 2016 American Council on the Teaching of Foreign Languages (ACTFL), All Rights Reserved.</p>
+
+</body>
+</HTML>
