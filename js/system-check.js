@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 	window.onload = function() {
 		var oProgress = $("#progress");
-		oProgress.html("Please wait while bandwidth is calculated...");
+		oProgress.html("Please wait while your connection speed is being calculated...");
 		window.setTimeout(MeasureConnectionSpeed, 1);
 	};
 
@@ -38,15 +38,22 @@ $(document).ready(function(){
 			
 			//console.log(speedKbps + ' < ' + BandwidthRequired);
 			
-			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg').removeClass().addClass('failedImg'):$('#bandwidthCheckImg').removeClass().addClass('passedImg');
+			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('fa fa-times'):$('#bandwidthCheckImg i').removeClass().addClass('fa fa-check');
 			
-			oProgress.html("Your connection speed is: " + speedKbps + " kbps<br /><a href='http://rochester.speedtest.frontier.com/' target='_blank'>Test Your Bandwidth</a>");
+			oProgress.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps<br /><a href='http://rochester.speedtest.frontier.com/' target='_blank'>Test Your Bandwidth</a>");
 		}
 	}
-
+	
+	function commaSeparateNumber(val){
+		while (/(\d+)(\d{3})/.test(val.toString())){
+			val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+		}
+			return val;
+	}	
+	
 	//Test for Flash, Audio and Mic
 	var flashVers = swfobject.getFlashPlayerVersion();
-	var minVers = swfobject.hasFlashPlayerVersion("15");
+	var minVers = swfobject.hasFlashPlayerVersion("10");
 
 	//audio check params
 	var audioParams = {
@@ -76,36 +83,32 @@ $(document).ready(function(){
 	if(minVers){
 		$('.displayFlash').toggle();
 		$('#version-number').html(flashVers.major);
-		$('#flashCheckImg').removeClass().addClass('passedImg');
+		$('#flashCheckImg i').removeClass().addClass('fa fa-check');
 	} else if(flashVers.major===0) {
 		$('.installFlash').toggle();
-		$('#flashCheckImg').removeClass().addClass('failedImg');
-		$('#microphoneCheckImg').removeClass().addClass('failedImg');
-		$('#MP3CheckImg').removeClass().addClass('failedImg');
-		$('#languageCheckImg').removeClass().addClass('failedImg');
+		$('#flashCheckImg i').removeClass().addClass('fa fa-times');
+		$('#microphoneCheckImg i').removeClass().addClass('fa fa-times');
+		$('#MP3CheckImg i').removeClass().addClass('fa fa-times');
+		$('#languageCheckImg i').removeClass().addClass('fa fa-times');
 	} else {
 		$('.upgradeFlash').toggle();
 		$('#version-number-low').html(flashVers.major);
-		$('#flashCheckImg').removeClass().addClass('failedImg');
-		$('#microphoneCheckImg').removeClass().addClass('failedImg');
-		$('#MP3CheckImg').removeClass().addClass('failedImg');
-		$('#languageCheckImg').removeClass().addClass('failedImg');
+		$('#flashCheckImg i').removeClass().addClass('fa fa-times');
+		$('#microphoneCheckImg i').removeClass().addClass('fa fa-times');
+		$('#MP3CheckImg i').removeClass().addClass('fa fa-times');
+		$('#languageCheckImg i').removeClass().addClass('fa fa-times');
 	}			
 
 	swfobject.embedSWF("flash/microphone.swf", "micCheck", "300", "150", "10.0.0", false);
 	swfobject.embedSWF("flash/player_mp3_maxi.swf", "audioPlayer", "200", "20", "10.0.0", false, audioParams);
 	swfobject.embedSWF("flash/inputTest.swf", "keyboardCheck", "200", "100", "10.0.0", false, keyboardParams, keyboardAttributes);
-	
-	$('#show_hideMicFlash').click(function() {
-		$('#MicFlashDiv').toggle();
-	});
-		
+			
 	$('a.passCheck').click(function() {
-		$(this).parents("td").next().removeClass().addClass('passedImg');
+		$(this).parents("td").next().children().removeClass().addClass('fa fa-check');
 	});
 	
 	$('a.failCheck').click(function() {
-		$(this).parents("td").next().removeClass().addClass('failedImg');
+		$(this).parents("td").next().children().removeClass().addClass('fa fa-times');
 	});
 	
 });

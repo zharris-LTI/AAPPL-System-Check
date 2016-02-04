@@ -24,6 +24,7 @@ Description: This page performs the following checks on the client:
 <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
 <META HTTP-EQUIV="expires"CONTENT="0">
 
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/system-check.css"/>	
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -59,7 +60,13 @@ Description: This page performs the following checks on the client:
 				</NOSCRIPT>
 			</DIV>
 		</TD>
-		<TD class="keyCell"><img src="media/sc_key.gif" alt="System Check Key"></TD>
+		<TD class="keyCell">
+			<ul>
+				<li><i class="fa fa-check"></i> - Yes</li>
+				<li><i class="fa fa-times"></i> - No</li>
+				<li><i class="fa fa-ellipsis-h"></i> - Unable to Detect</li>
+			</ul>
+		</TD>
 	</TR>
 
 <!--******************************
@@ -83,12 +90,12 @@ Description: This page performs the following checks on the client:
     ******************************-->
  
 	<TR class="oddRow" id="row5">
-		<TD class="col1">Bandwidth</TD>
-		<TD class="col2"><DIV>1000 kilobits per second,<br>per tester</DIV></TD>
+		<TD class="col1">Internet Connection Speed</TD>
+		<TD class="col2"><DIV>Your internet connect speed must be at least 1,000 Kbps per second, per tester.</DIV></TD>
 		<TD class="col3">
 			<DIV id="bandwidthDiv"><div id="progress"></div></DIV>
 		</TD>
-		<TD class="col4" id="bandwidthCheckImg">&nbsp;</TD>
+		<TD class="col4" id="bandwidthCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
 	</TR>
 			
 <!--******************************
@@ -97,13 +104,17 @@ Description: This page performs the following checks on the client:
  
 	<TR class="evenRow" id="row6">
 		<TD class="col1">Ports</TD>
-		<TD class="col2"><DIV><p>Port 1935. <br />Please conduct the Port test provided and look for "Success" for "RTMP Port 1935".  If your test for "RTMP Port 1935" fails, please contact your IT professional to have Port 1935 opened.</p></DIV></TD>
+		<TD class="col2"><DIV><p>Port 1935 must be open in order for Flash to communicate with your computer.</p></DIV></TD>
 		<TD class="col3">
-			<DIV>Are these ports open?&nbsp;<a href="#" class="passCheck">YES</a>&nbsp;<a href="#" class="failCheck">NO</a><br><br>
+			<DIV><!--Are these ports open?&nbsp;<a href="#" class="passCheck">YES</a>&nbsp;<a href="#" class="failCheck">NO</a><br><br>-->
 				<a href="http://server1.actfltesting.org/FMSPortTester/AAPPLFMSPortTester.html" target="_blank">Test Your Ports</a>
 			</DIV>
+			<div class="confirmation">
+				<p>Are these ports open?</p>
+				<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+			</div>
 		</TD>
-		<TD class="col4" id="portsCheckImg">&nbsp;</TD>
+		<TD class="col4" id="portsCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
 	</TR>
 			
 <!--******************************
@@ -113,7 +124,7 @@ Description: This page performs the following checks on the client:
 	<TR class="oddRow" id="row7">
 		<TD class="col1">Flash Player</TD>
 		<TD class="col2">
-			<DIV>Flash Player 10.0</DIV>
+			<DIV>You must have Flash Player version 10 or higher installed.</DIV>
 		</TD>
 		<TD class="col3">
 			<div class="installFlash">
@@ -126,29 +137,66 @@ Description: This page performs the following checks on the client:
 				<p>Flash Player version <span id="version-number"></span></p>
 			</div>
 		</TD>
-		<TD class="col4" id="flashCheckImg">&nbsp;</TD>
+		<TD class="col4" id="flashCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
+	</TR>
+
+<!--******************************
+    ROW 9 - MP3 Audio
+    ******************************-->
+	<TR class="evenRow" id="row9">
+		<TD class="col1">Audio</TD>
+		<TD class="col2">
+			<DIV>Your computer must be able to playback audio</DIV>
+		</TD>
+		<TD class="col3">
+			<div class="displayFlash">
+				<!-- <div id="audioPlayer"></div>  -->
+				<img src="media/audio-check-mini.png" />
+				<p>Click <span class="play-text">Play</span> to test your audio.</p>
+				<div class="confirmation">
+					<p>Were you able to listen to the audio?</p>
+					<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+				</div>
+			</div>
+			<div class="installFlash">
+				<p>In order to test your audio settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
+			</div>
+			<div class="upgradeFlash">
+				<p>In order to test your audio settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
+			</div>			
+		</TD>
+		<TD class="col4" id="MP3CheckImg"><i class="fa fa-ellipsis-h"></i></TD>
 	</TR>
 
 <!--******************************
     ROW 8 - Microphone
     ******************************-->
  
-	<TR class="evenRow" id="row8">
+	<TR class="oddRow" id="row8">
 		<TD class="col1">Microphone</TD>
 		<TD class="col2">
-			<DIV>A headset with microphone is required for the speaking component, while a headset is required for all components.</DIV>
+			<DIV>A microphone is required for the speaking assessment.</DIV>
 		</TD>
 		<TD class="col3">
 			<div class="displayFlash">
-				<a href="#" id="show_hideMicFlash">Start Microphone Test</a>
 				<DIV id="MicFlashDiv">
-					<p>To allow your microphone to be used, click 'Allow', if asked.</p>
-					<div id="micCheck">
+					<p>Click 'Allow', if prompted by your browser.</p>
+<!-- 					<div id="micCheck">
 						<p>You do not have a current version of the Flash Player installed. This content requires Flash Player 10 or newer. <a href="http://www.adobe.com/go/getflashplayer" target="_blank">Go get the Flash Player</a> (free).</p>
 						<p>If you do have the current Flash Player, then JavaScript is not enabled in your Web browser. Please enable JavaScript to view this content.</p>
+					</div> -->
+					<img class="mic-check-control" src="media/mic-check-mini.png" />
+					<ol>
+						<li>Click <span class="record-text">Record</span> and talk into your microphone.</li>
+						<li>Click <span class="stop-text">Stop</span> when your are done recording.</li>
+						<li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
+					</ol>
+					<p>Click 'Configure', select the Remember check box and click the 'Close' button.</p>
+					<div class="confirmation">
+						<p>Were you able to record your voice?</p>
+						<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
 					</div>
-					<p>Click the 'Configure' button, select the Remember check box and click the 'Close' button.</p>
-					<p>Does your microphone work? Do you see the color indicators moving? <a href="#" class="passCheck">YES</a> <a href="#" class="failCheck">NO</a></p>
+					
 				</DIV>
 			</div>
 			<div class="installFlash">
@@ -158,29 +206,7 @@ Description: This page performs the following checks on the client:
 				<p>In order to test your microphone settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
 			</div>			
 		</TD>
-		<TD class="col4" id="microphoneCheckImg">&nbsp;</TD>
-	</TR>
-<!--******************************
-    ROW 9 - MP3 Audio
-    ******************************-->
-	<TR class="oddRow" id="row9">
-		<TD class="col1">MP3 Audio</TD>
-		<TD class="col2">
-			<DIV>Your system must allow MP3 audio files to be played. Please test your system before proceeding into the test.</DIV>
-		</TD>
-		<TD class="col3">
-			<div class="displayFlash">
-				<p>Does MP3 play? <a href="#" class="passCheck">YES</a> <a href="#" class="failCheck">NO</a></p>
-				<div id="audioPlayer"></div> 
-			</div>
-			<div class="installFlash">
-				<p>In order to test your audio settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
-			</div>
-			<div class="upgradeFlash">
-				<p>In order to test your audio settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
-			</div>			
-		</TD>
-		<TD class="col4" id="MP3CheckImg">&nbsp;</TD>
+		<TD class="col4" id="microphoneCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
 	</TR>
 
 <!--******************************
@@ -194,8 +220,7 @@ Description: This page performs the following checks on the client:
 		</TD>
 		<TD class="col3">
 			<div class="displayFlash">
-				<p>Can you type in the box below using the target language?&nbsp;<a href="#" class="passCheck">YES</a>&nbsp;<a href="#" class="failCheck">NO</a></p>
-				<p>Click on the buttons to change the direction of the text.</p>
+				<p>Try typing in the box below using the target language. Click on the buttons to change the direction of the text.</p>
 				<div id="keyboardCheck"></div>
 				<p>
 					See Keyboard Setup/Use Instructions<br />
@@ -208,8 +233,12 @@ Description: This page performs the following checks on the client:
 			<div class="upgradeFlash">
 				<p>In order to test your keyboard you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
 			</div>			
+			<div class="confirmation">
+				<p>Can you type in the box below using the target language?</p>
+				<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+			</div>
 		</TD>
-		<TD class="col4" id="languageCheckImg">&nbsp;</TD>
+		<TD class="col4" id="languageCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
 	</TR>	
 </TABLE>
 
