@@ -1,7 +1,33 @@
-<!--********************************
-    Style Guide
-    ********************************-->
+/*********************** Font Sizes ***********************/
+body {
+		font-size: 13px;
+}
 
+h2 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.3em;
+}
+
+h4 {
+	font-size: 1em;
+}
+
+.footer .footer-copy p {
+	font-size: 0.7em;	
+	line-height: .7em;
+}
+
+/*********************** End Font Sizes ***********************/
+
+/*********************** Content Styles ***********************/
+
+table.system-check-table {
+	border: 1px solid #000;
+	width: 100%;
+}
 
 	.confirmation {
 		font-size: 14px;
@@ -40,101 +66,6 @@
 		color: #f00;
 	}
 
-	.keyRow {
-		background-color: #FFFFFF;
-		text-align:left;
-		}
-	.keyCell {
-		background-color: #FFFFFF;
-		text-align:center;
-		vertical-align:top;
-		}
-	.evenRow {
-		background-color: #eeeeee;
-	}
-	.oddRow {
-		background-color: #d9e4ee;
-	}
-	
-	.col1 {
-		font-weight: bold;
-		border-right:4px solid white;
-		border-bottom:4px solid white;
-		padding:10px;
-		vertical-align:top;
-	}
-	.col2 {
-		border-right:4px solid white;
-		border-bottom:4px solid white;
-		padding:10px;
-		vertical-align:top;
-	}
-	.col3 {
-		border-right:4px solid white;
-		border-bottom:4px solid white;
-		padding:10px;
-		vertical-align:top;
-	}
-	.col4 {
-		border-bottom:4px solid white;
-		/*background-image:url(../media/sc_undetected.gif);*/
-		background-repeat: no-repeat;
-		background-position: center 10;
-		padding:10px;
-	}
-	
-	.small, td,div {
-		font-family : Arial, Helvetica, sans-serif;
-		font-size : 11px;
-		text-align:center;
-	}
-	.leftAlign {
-		text-align:left;
-		padding-left:10px;
-	}
-	.topAlign {
-		vertical-align: top;
-	}
-	.mainTable {
-		width:100%;
-		table-layout:fixed;
-	}
-
-	.columnHeader {
-		font-family : Arial, Helvetica, sans-serif;
-		color: white; 
-		font-size: 15px;;
-		background-color:#f08b20;
-		font-weight: bold;
-		height:40px;
-	}
-	.tableHeader {
-		height: 142px;
-		background-color: #a81825;
-		font-family : Arial, Helvetica, sans-serif;
-		font-size: 24px;
-		color:#FFF;
-	}
-	.tableHeaderImg {
-		background-color: #a81825;
-		background-image:url(../aappl_logo.png);
-		background-repeat: no-repeat;
-		background-position: left;
-		height:172px;
-		width:200px;
-	}
-	.address {
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 10px;
-		font-style: normal;
-		line-height: 15px;
-		font-weight: normal;
-		font-variant: normal;
-		text-transform: none;
-		color: #666666;
-		text-align: center;
-		margin-bottom: 30px;
-	}
 	
 	ol li {
 		width: 220px;
@@ -185,10 +116,75 @@
 		margin-left: 30px;
 	}
 
-	body {
-		background-color: #f6f5f5;
-		margin-top: 0px;
-		margin-left: 0px;
-		margin-right: 0px;
-		margin-bottom: 30px;
+/*********************** End Content Styles ***********************/
+
+/*********************** begin header ***********************/
+
+.header {
+	background-color: #B0252E;
+	height: 70px;
+}
+
+.header .container {
+	padding: 0 6px;
+}
+
+.aappl-logo {
+	width: 350px;
+	margin-top: 14px;
+}
+
+/*********************** end header ***********************/
+
+/*********************** begin footer ***********************/
+
+.footer {
+	background-color: #B0252E;
+	color: #fff;
+}
+
+	.footer .container {
+		padding: 14px 6px;
 	}
+
+	.footer .footer-col {
+		float: left;
+		margin-right: 12px;
+	}
+
+	.footer .lti-footer-logo {
+		display: block;
+		margin-top: 7px;
+		width: 96px;
+		height: 23px;
+	}
+
+/*********************** end footer ***********************/
+
+/*set the width of the page */
+/* applied to the header, content and footer */
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+/* begin footer fix */
+html, body {
+    height: 100%;
+}
+
+.wrap {
+    min-height: 100%;
+    min-width: 960px;
+}
+
+.main {
+    padding-bottom: 70px; /* footer height */
+}
+
+.footer {
+	margin-top: -70px; /* negative value of footer height */
+    min-width: 960px;
+	height: 70px;
+}
+/* end footer fix */
