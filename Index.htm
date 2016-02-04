@@ -50,7 +50,7 @@ Description: This page performs the following checks on the client:
 			<div class="content">
 				<div class="container">
 
-					<table class="system-check-table">
+					<table class="system-check-table" border="1">
 						<thead>
 							<tr>
 								<th>CRITERIA</th>
@@ -71,8 +71,116 @@ Description: This page performs the following checks on the client:
 								</td>
 							</tr>
 							
+							<!--****************************** ROW 1 - Bandwidth ******************************-->						 
+							<tr>
+								<td>Internet Connection Speed</td>
+								<td><p>Your internet connect speed must be at least 1,000 Kbps per second, per tester.</p></td>
+								<td><p id="progress"></p></td>
+								<td id="bandwidthCheckImg"><i class="fa fa-ellipsis-h"></i></td>
+							</tr>
 							
+							<!--****************************** ROW 2 - Ports ******************************--> 
+							<tr>
+								<td>Ports</td>
+								<td><p>Port 1935 must be open in order for Flash to communicate with your computer.</p></td>
+								<td>
+									<p id="port-open">Port 1935 is open</p>
+									<p id="port-closed">Port 1935 is closed. Please contact your system administrator.</p>
+								</td>
+								<td id="portsCheckImg"><i class="fa fa-ellipsis-h"></i></td>
+							</tr>
+
+							<!--****************************** ROW 3 - Flash Player ******************************-->							 
+							<tr>
+								<td>Flash Player</td>
+								<td><p>You must have Flash Player version 10 or higher installed.</p></td>
+								<td>
+									<div class="displayFlash"><p>Flash Player version <span id="version-number"></span></p></div>
+									<div class="installFlash"><p>You need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p></div>
+									<div class="upgradeFlash"><p>Flash Player version <span id="version-number-low"></span> <br />You need to <a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p></div>
+								</td>
+								<td id="flashCheckImg"><i class="fa fa-ellipsis-h"></i></td>
+							</tr>
+
+							<!--****************************** ROW 4 - MP3 Audio ******************************-->
+							<tr>
+								<td>Audio</td>
+								<td><p>Your computer must be able to playback audio</p></td>
+								<td>
+									<div class="displayFlash">
+										<!-- <div id="audioPlayer"></div>  -->
+										<img src="media/audio-check-mini.png" />
+										<p>Click <span class="play-text">Play</span> to test your audio.</p>
+										<div class="confirmation">
+											<p>Were you able to listen to the audio?</p>
+											<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+										</div>
+									</div>
+									<div class="installFlash"><p>In order to test your audio settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p></div>
+									<div class="upgradeFlash"><p>In order to test your audio settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p></div>			
+								</td>
+								<td id="MP3CheckImg"><i class="fa fa-ellipsis-h"></i></td>
+							</tr>
 							
+							<!--****************************** ROW 5 - Microphone ******************************-->
+							<tr>
+								<td>Microphone</td>
+								<td><p>A microphone is required for the speaking assessment.</p></td>
+								<td>
+									<div class="displayFlash">
+										<div id="MicFlashDiv">
+											<p>Click 'Allow', if prompted by your browser.</p>
+											<!--<div id="micCheck">
+												<p>You do not have a current version of the Flash Player installed. This content requires Flash Player 10 or newer. <a href="http://www.adobe.com/go/getflashplayer" target="_blank">Go get the Flash Player</a> (free).</p>
+												<p>If you do have the current Flash Player, then JavaScript is not enabled in your Web browser. Please enable JavaScript to view this content.</p>
+											</div> -->
+											<img class="mic-check-control" src="media/mic-check-mini.png" />
+											<ol>
+												<li>Click <span class="record-text">Record</span> and talk into your microphone.</li>
+												<li>Click <span class="stop-text">Stop</span> when your are done recording.</li>
+												<li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
+											</ol>
+											<p>Click 'Configure', select the Remember check box and click the 'Close' button.</p>
+											<div class="confirmation">
+												<p>Were you able to record your voice?</p>
+												<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+											</div>
+											
+										</div>
+									</div>
+									<div class="installFlash"><p>In order to test your microphone settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p></div>
+									<div class="upgradeFlash"><p>In order to test your microphone settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p></div>			
+								</td>
+								<td id="microphoneCheckImg"><i class="fa fa-ellipsis-h"></i></td>
+							</tr>
+
+							<!--****************************** ROW 6 - Target Language ******************************-->
+							<tr>
+								<td>Language Support</td>
+								<td><p>If writing is being assessed, the candidates will need to be able to type in the language.  Please test your system here before proceeding into the test.</p></td>
+								<td>
+									<div class="displayFlash">
+										<p>Try typing in the box below using the target language. Click on the buttons to change the direction of the text.</p>
+										<div id="keyboardCheck"></div>
+										<p>
+											See Keyboard Setup/Use Instructions<br />
+											<a href="http://symbolcodes.tlt.psu.edu/bylanguage/arabic.html#win" target="_blank">Arabic</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/chinese.html#keyboard" target="_blank">Chinese</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/french.html#winalt" target="_blank">French</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/german.html#winalt" target="_blank">German</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/russian.html#keyboard" target="_blank">Russian</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/spanish.html#winalt" target="_blank">Spanish</a>
+										</p>
+									</div>
+									<div class="installFlash">
+										<p>In order to test your keyboard you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
+									</div>
+									<div class="upgradeFlash">
+										<p>In order to test your keyboard you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
+									</div>			
+									<div class="confirmation">
+										<p>Can you type in the box below using the target language?</p>
+										<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+									</div>
+								</td>
+								<td id="languageCheckImg"><i class="fa fa-ellipsis-h"></i></td>
+							</tr>
+	
 						</tbody>
 					</table>
 
@@ -98,214 +206,6 @@ Description: This page performs the following checks on the client:
 			</span>
 		</div>
 	</div><!-- end footer -->
-
-<TABLE align="center" cellspacing="0" cellpadding="0" class="mainTable">
-	<TR>
-		<TD class="tableHeaderImg">&nbsp;</TD>
-		<TD class="tableHeader" colspan="2">AAPPL Measure System Check<br />Is your system ready?</TD>
-		<TD class="tableHeader"></TD>
-	</TR>
-	<TR>
-		<TD class="keyRow" colspan="4" height="4"></TD>
-	</TR>
-	<TR>
-		<TD width="15%" class="columnHeader">CRITERIA</TD>
-		<TD width="35%" class="columnHeader">MINIMUM REQUIREMENTS</TD>
-		<TD width="35%" class="columnHeader">YOUR SYSTEM INFORMATION</TD>
-		<TD width="15%" class="columnHeader">MEETS REQUIREMENTS</TD>
-	</TR>
-	<TR>
-		<TD class="keyRow" colspan="3">
-			<DIV class="keyRow" id="errorMessageDiv">
-				<NOSCRIPT>
-				<h3>This page uses JavaScript to test your system</h3> 
-				<p>Please make sure that JavaScript is enabled in your browser and your browser is equal to or better than Netscape Navigator 3 or MS Internet Explorer 3.</p>
-				</NOSCRIPT>
-			</DIV>
-		</TD>
-		<TD class="keyCell">
-			<ul>
-				<li><i class="fa fa-check"></i> - Yes</li>
-				<li><i class="fa fa-times"></i> - No</li>
-				<li><i class="fa fa-ellipsis-h"></i> - Unable to Detect</li>
-			</ul>
-		</TD>
-	</TR>
-
-<!--******************************
-    ROW 1 - Browser
-    ******************************
- 
-	<TR class="evenRow" id="row1">
-		<TD class="col1">Browser</TD>
-		<TD class="col2">
-			<DIV id="MainVersion"></DIV>
-		</TD>
-		<TD class="col3">
-			<DIV id="browserVersionDiv">&nbsp;</DIV>
-		</TD>
-		<TD class="col4" id="browserNameCheckImg">&nbsp;</TD>
-	</TR>
-	-->
-
-<!--******************************
-    ROW 5 - Bandwidth
-    ******************************-->
- 
-	<TR class="oddRow" id="row5">
-		<TD class="col1">Internet Connection Speed</TD>
-		<TD class="col2"><DIV>Your internet connect speed must be at least 1,000 Kbps per second, per tester.</DIV></TD>
-		<TD class="col3">
-			<DIV id="bandwidthDiv"><div id="progress"></div></DIV>
-		</TD>
-		<TD class="col4" id="bandwidthCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
-	</TR>
-			
-<!--******************************
-    ROW 6 - Ports
-    ******************************-->
- 
-	<TR class="evenRow" id="row6">
-		<TD class="col1">Ports</TD>
-		<TD class="col2"><DIV><p>Port 1935 must be open in order for Flash to communicate with your computer.</p></DIV></TD>
-		<TD class="col3">
-			<DIV><!--Are these ports open?&nbsp;<a href="#" class="passCheck">YES</a>&nbsp;<a href="#" class="failCheck">NO</a><br><br>-->
-				<a href="http://server1.actfltesting.org/FMSPortTester/AAPPLFMSPortTester.html" target="_blank">Test Your Ports</a>
-			</DIV>
-			<div class="confirmation">
-				<p>Are these ports open?</p>
-				<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
-			</div>
-		</TD>
-		<TD class="col4" id="portsCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
-	</TR>
-			
-<!--******************************
-    ROW 7 - Flash Player
-    ******************************-->
- 
-	<TR class="oddRow" id="row7">
-		<TD class="col1">Flash Player</TD>
-		<TD class="col2">
-			<DIV>You must have Flash Player version 10 or higher installed.</DIV>
-		</TD>
-		<TD class="col3">
-			<div class="installFlash">
-				<p>You need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
-			</div>
-			<div class="upgradeFlash">
-				<p>Flash Player version <span id="version-number-low"></span> <br />You need to <a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
-			</div>
-			<div class="displayFlash">
-				<p>Flash Player version <span id="version-number"></span></p>
-			</div>
-		</TD>
-		<TD class="col4" id="flashCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
-	</TR>
-
-<!--******************************
-    ROW 9 - MP3 Audio
-    ******************************-->
-	<TR class="evenRow" id="row9">
-		<TD class="col1">Audio</TD>
-		<TD class="col2">
-			<DIV>Your computer must be able to playback audio</DIV>
-		</TD>
-		<TD class="col3">
-			<div class="displayFlash">
-				<!-- <div id="audioPlayer"></div>  -->
-				<img src="media/audio-check-mini.png" />
-				<p>Click <span class="play-text">Play</span> to test your audio.</p>
-				<div class="confirmation">
-					<p>Were you able to listen to the audio?</p>
-					<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
-				</div>
-			</div>
-			<div class="installFlash">
-				<p>In order to test your audio settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
-			</div>
-			<div class="upgradeFlash">
-				<p>In order to test your audio settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
-			</div>			
-		</TD>
-		<TD class="col4" id="MP3CheckImg"><i class="fa fa-ellipsis-h"></i></TD>
-	</TR>
-
-<!--******************************
-    ROW 8 - Microphone
-    ******************************-->
- 
-	<TR class="oddRow" id="row8">
-		<TD class="col1">Microphone</TD>
-		<TD class="col2">
-			<DIV>A microphone is required for the speaking assessment.</DIV>
-		</TD>
-		<TD class="col3">
-			<div class="displayFlash">
-				<DIV id="MicFlashDiv">
-					<p>Click 'Allow', if prompted by your browser.</p>
-<!-- 					<div id="micCheck">
-						<p>You do not have a current version of the Flash Player installed. This content requires Flash Player 10 or newer. <a href="http://www.adobe.com/go/getflashplayer" target="_blank">Go get the Flash Player</a> (free).</p>
-						<p>If you do have the current Flash Player, then JavaScript is not enabled in your Web browser. Please enable JavaScript to view this content.</p>
-					</div> -->
-					<img class="mic-check-control" src="media/mic-check-mini.png" />
-					<ol>
-						<li>Click <span class="record-text">Record</span> and talk into your microphone.</li>
-						<li>Click <span class="stop-text">Stop</span> when your are done recording.</li>
-						<li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
-					</ol>
-					<p>Click 'Configure', select the Remember check box and click the 'Close' button.</p>
-					<div class="confirmation">
-						<p>Were you able to record your voice?</p>
-						<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
-					</div>
-					
-				</DIV>
-			</div>
-			<div class="installFlash">
-				<p>In order to test your microphone settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
-			</div>
-			<div class="upgradeFlash">
-				<p>In order to test your microphone settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
-			</div>			
-		</TD>
-		<TD class="col4" id="microphoneCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
-	</TR>
-
-<!--******************************
-    ROW 10 - Target Language
-    ******************************-->
- 
-	<TR class="evenRow" id="row10">
-		<TD class="col1">Language Support</TD>
-		<TD class="col2">
-			<DIV>If writing is being assessed, the candidates will need to be able to type in the language.  Please test your system here before proceeding into the test.</DIV>
-		</TD>
-		<TD class="col3">
-			<div class="displayFlash">
-				<p>Try typing in the box below using the target language. Click on the buttons to change the direction of the text.</p>
-				<div id="keyboardCheck"></div>
-				<p>
-					See Keyboard Setup/Use Instructions<br />
-					<a href="http://symbolcodes.tlt.psu.edu/bylanguage/arabic.html#win" target="_blank">Arabic</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/chinese.html#keyboard" target="_blank">Chinese</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/french.html#winalt" target="_blank">French</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/german.html#winalt" target="_blank">German</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/russian.html#keyboard" target="_blank">Russian</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/spanish.html#winalt" target="_blank">Spanish</a>
-				</p>
-			</div>
-			<div class="installFlash">
-				<p>In order to test your keyboard you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
-			</div>
-			<div class="upgradeFlash">
-				<p>In order to test your keyboard you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
-			</div>			
-			<div class="confirmation">
-				<p>Can you type in the box below using the target language?</p>
-				<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
-			</div>
-		</TD>
-		<TD class="col4" id="languageCheckImg"><i class="fa fa-ellipsis-h"></i></TD>
-	</TR>	
-</TABLE>
-
-<p class="address">Copyright © 2016 American Council on the Teaching of Foreign Languages (ACTFL), All Rights Reserved.</p>
 
 </body>
 </HTML>
