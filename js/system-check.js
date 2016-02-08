@@ -102,7 +102,7 @@ $(document).ready(function(){
 	swfobject.embedSWF("flash/player_mp3_maxi.swf", "audioPlayer", "200", "20", "10.0.0", false, audioParams);
 	swfobject.embedSWF("flash/inputTest.swf", "keyboardCheck", "200", "100", "10.0.0", false, keyboardParams, keyboardAttributes);
 			
-	$('.flash-control').mousedown(function() {
+	$('.displayFlash').mousedown(function() {
 		//console.log('clicked');
 		var dialogButtons = $(this).parents("td").find(".confirmation a");
 		dialogButtons.removeClass("disabled");
@@ -111,7 +111,7 @@ $(document).ready(function(){
 	$('a.passCheck').click(function() {
 		var disabled = $(this).hasClass("disabled");
 		if(!disabled) {
-			$(this).parents("td").next().children().removeClass().addClass('fa fa-check');
+			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-check');
 		}
 		
 		var requirementCheck = allCriteria.filter('.fa-check').length;
@@ -125,8 +125,9 @@ $(document).ready(function(){
 	$('a.failCheck').click(function() {
 		var disabled = $(this).hasClass("disabled");		
 		if(!disabled) {
-			$(this).parents("td").next().children().removeClass().addClass('fa fa-times');
+			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-times');
 		}
+		$('#login-btn').addClass('disabled');
 	});
 	
 });
