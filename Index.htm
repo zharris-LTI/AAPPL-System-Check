@@ -44,13 +44,14 @@ Description: This page performs the following checks on the client:
 			<div class="header">
 				<div class="container">
 					<img class="aappl-logo" src="media/logo.png" />
+					<a id="login-btn" class="generic-button disabled" href="#">Go to Test</a>
 				</div>
 			</div><!-- end head -->
 			
 			<div class="content">
 				<div class="container">
 
-					<table class="system-check-table" border="1">
+					<table class="system-check-table">
 						<thead>
 							<tr>
 								<th>CRITERIA</th>
@@ -63,7 +64,7 @@ Description: This page performs the following checks on the client:
 							<tr>
 								<td colspan="3"></td>
 								<td>
-									<ul>
+									<ul class="icon-key">
 										<li><i class="fa fa-check"></i> - Yes</li>
 										<li><i class="fa fa-times"></i> - No</li>
 										<li><i class="fa fa-ellipsis-h"></i> - Unable to Detect</li>
@@ -87,17 +88,23 @@ Description: This page performs the following checks on the client:
 									<p id="port-open">Port 1935 is open</p>
 									<p id="port-closed">Port 1935 is closed. Please contact your system administrator.</p>
 								</td>
-								<td id="portsCheckImg"><i class="fa fa-ellipsis-h"></i></td>
+								<td id="portsCheckImg"><i class="fa fa-check"></i></td>
 							</tr>
 
 							<!--****************************** ROW 3 - Flash Player ******************************-->							 
 							<tr>
 								<td>Flash Player</td>
-								<td><p>You must have Flash Player version 10 or higher installed.</p></td>
+								<td><p>You must have Flash Player version <span class="min-version-number"></span> or higher installed.</p></td>
 								<td>
 									<div class="displayFlash"><p>Flash Player version <span id="version-number"></span></p></div>
-									<div class="installFlash"><p>You need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p></div>
-									<div class="upgradeFlash"><p>Flash Player version <span id="version-number-low"></span> <br />You need to <a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p></div>
+									<div class="installFlash">
+										<p>In order to take the test your browser must have Flash installed and un-blocked.</p> 
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+									</div>
+									<div class="upgradeFlash">
+										<p>Flash Player version <span id="version-number-low"></span> is installed. In order to take the test your browser must have the latest version of Flash.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+									</div>
 								</td>
 								<td id="flashCheckImg"><i class="fa fa-ellipsis-h"></i></td>
 							</tr>
@@ -109,15 +116,21 @@ Description: This page performs the following checks on the client:
 								<td>
 									<div class="displayFlash">
 										<!-- <div id="audioPlayer"></div>  -->
-										<img src="media/audio-check-mini.png" />
-										<p>Click <span class="play-text">Play</span> to test your audio.</p>
+										<img class="flash-control" src="media/audio-check-mini.png" />
+										<p class="flash-instructions">Click <span class="play-text">Play</span> to test your audio.</p>
 										<div class="confirmation">
 											<p>Were you able to listen to the audio?</p>
-											<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+											<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
 										</div>
 									</div>
-									<div class="installFlash"><p>In order to test your audio settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p></div>
-									<div class="upgradeFlash"><p>In order to test your audio settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p></div>			
+									<div class="installFlash">
+										<p>In order to test your audio settings your browser must have Flash installed and un-blocked.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+									</div>
+									<div class="upgradeFlash">
+										<p>In order to test your audio settings your browser must have the latest version of Flash.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+									</div>			
 								</td>
 								<td id="MP3CheckImg"><i class="fa fa-ellipsis-h"></i></td>
 							</tr>
@@ -129,27 +142,33 @@ Description: This page performs the following checks on the client:
 								<td>
 									<div class="displayFlash">
 										<div id="MicFlashDiv">
-											<p>Click 'Allow', if prompted by your browser.</p>
 											<!--<div id="micCheck">
 												<p>You do not have a current version of the Flash Player installed. This content requires Flash Player 10 or newer. <a href="http://www.adobe.com/go/getflashplayer" target="_blank">Go get the Flash Player</a> (free).</p>
 												<p>If you do have the current Flash Player, then JavaScript is not enabled in your Web browser. Please enable JavaScript to view this content.</p>
 											</div> -->
-											<img class="mic-check-control" src="media/mic-check-mini.png" />
-											<ol>
+											<img class="flash-control" src="media/mic-check-mini.png" />
+											<ol class="mic-instructions">
+												<li>Click '<strong>Allow</strong>', if prompted by your browser.</li>
 												<li>Click <span class="record-text">Record</span> and talk into your microphone.</li>
 												<li>Click <span class="stop-text">Stop</span> when your are done recording.</li>
 												<li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
+												<li>Click '<strong>Configure</strong>', select the Remember check box and click the '<strong>Close</strong>' button.</li>
 											</ol>
-											<p>Click 'Configure', select the Remember check box and click the 'Close' button.</p>
 											<div class="confirmation">
 												<p>Were you able to record your voice?</p>
-												<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
+												<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
 											</div>
 											
 										</div>
 									</div>
-									<div class="installFlash"><p>In order to test your microphone settings you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p></div>
-									<div class="upgradeFlash"><p>In order to test your microphone settings you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p></div>			
+									<div class="installFlash">
+										<p>In order to test your microphone settings your browser must have Flash installed and un-blocked.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+									</div>
+									<div class="upgradeFlash">
+										<p>In order to test your microphone settings your browser must have the latest version of Flash.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+									</div>
 								</td>
 								<td id="microphoneCheckImg"><i class="fa fa-ellipsis-h"></i></td>
 							</tr>
@@ -161,22 +180,24 @@ Description: This page performs the following checks on the client:
 								<td>
 									<div class="displayFlash">
 										<p>Try typing in the box below using the target language. Click on the buttons to change the direction of the text.</p>
-										<div id="keyboardCheck"></div>
+										<div class="flash-control" id="keyboardCheck"></div>
 										<p>
 											See Keyboard Setup/Use Instructions<br />
 											<a href="http://symbolcodes.tlt.psu.edu/bylanguage/arabic.html#win" target="_blank">Arabic</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/chinese.html#keyboard" target="_blank">Chinese</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/french.html#winalt" target="_blank">French</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/german.html#winalt" target="_blank">German</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/russian.html#keyboard" target="_blank">Russian</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/spanish.html#winalt" target="_blank">Spanish</a>
 										</p>
+										<div class="confirmation">
+											<p>Can you type in the box below using the target language?</p>
+											<a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
+										</div>
 									</div>
 									<div class="installFlash">
-										<p>In order to test your keyboard you need to install or un-block flash <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">Install Flash</a></p>
+										<p>In order to test your keyboard your browser must have Flash installed and un-blocked.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
 									</div>
 									<div class="upgradeFlash">
-										<p>In order to test your keyboard you need to <br /><a href="http://www.adobe.com/go/getflashplayer" target="_blank">update to the current version of Flash</a></p>
+										<p>In order to test your keyboard your browser must have the latest version of Flash.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
 									</div>			
-									<div class="confirmation">
-										<p>Can you type in the box below using the target language?</p>
-										<a href="#" class="passCheck">Yes</a><a href="#" class="failCheck">No</a>
-									</div>
 								</td>
 								<td id="languageCheckImg"><i class="fa fa-ellipsis-h"></i></td>
 							</tr>
