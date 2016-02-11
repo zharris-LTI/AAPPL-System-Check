@@ -1,4 +1,4 @@
-<!DOCTYPE html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <!--
 ******************************************************************************************
 Description: This page performs the following checks on the client:
@@ -17,15 +17,21 @@ Description: This page performs the following checks on the client:
 04/21/10 Removed QuickTime
 ******************************************************************************************
 -->
-<HTML>
-<HEAD>
+
+<!--[if lte IE 8 ]><html class="ie ie8" lang="en-US"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en-US"> <![endif]-->
+<!--[if IE ]><html class="ie" lang="en-US"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en-US"><!--<![endif]-->
+
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
-<META HTTP-EQUIV="expires"CONTENT="0">
+<meta HTTP-EQUIV="expires"CONTENT="0">
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/normalize.css"/>	
+<link rel="stylesheet" href="http://aappldemo.actfltesting.org/css/aappl-test.css" />
 <link rel="stylesheet" href="css/system-check.css"/>	
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -33,10 +39,10 @@ Description: This page performs the following checks on the client:
 
 <script src="js/swfobject.js"></script>
 
-<TITLE>AAPPL Measure System Check</TITLE>
+<title>AAPPL Measure System Check</title>
 
-</HEAD>
-<BODY>
+</head>
+<body>
 
 	<div class="wrap">
 		<div class="main">
@@ -44,13 +50,20 @@ Description: This page performs the following checks on the client:
 			<div class="header">
 				<div class="container">
 					<img class="aappl-logo" src="media/logo.png" />
-					<a id="login-btn" class="generic-button disabled" href="#">Go to Test</a>
 				</div>
 			</div><!-- end head -->
 			
 			<div class="content">
 				<div class="container">
-
+					<div class="panel system-check-panel">
+						<div class="panel-title">
+							<h3><i class="aappl-icon fa fa-wrench"></i> AAPPL System Check</h3>
+						</div>
+						<div class="panel-content centered">
+							<p>Once you have successfully completed all of the system checks below you may click on the 'Go to Test' button login to your test</p>
+							<a id="login-btn" class="generic-button disabled">Go to Test</a>
+						</div>
+					</div>
 					<table class="system-check-table">
 						<thead>
 							<tr>
@@ -85,10 +98,24 @@ Description: This page performs the following checks on the client:
 								<td>Ports</td>
 								<td><p>Port 1935 must be open in order for Flash to communicate with your computer.</p></td>
 								<td>
-									<p id="port-open">Port 1935 is open</p>
-									<p id="port-closed">Port 1935 is closed. Please contact your system administrator.</p>
+										<!-- <div id="portCheckMsg"></div> -->
+<!-- 										<p id="port-open">Port 1935 is open</p>
+										<p id="port-closed">Port 1935 is closed. Please contact your system administrator.</p> -->
+								
+									<div class="displayFlash">
+										<div id="portCheckMsg"></div>
+										<div id="portCheck"></div>
+									</div>
+									<div class="installFlash">
+										<p>In order to take the test your browser must have Flash installed and un-blocked.</p> 
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+									</div>
+									<div class="upgradeFlash">
+										<p>Flash Player version <span id="version-number-low"></span> is installed. In order to take the test your browser must have the latest version of Flash.</p>
+										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+									</div>
 								</td>
-								<td id="portsCheckImg"><i class="fa fa-check"></i></td>
+								<td id="portsCheckImg"><i class="fa fa-ellipsis-h"></i></td>
 							</tr>
 
 							<!--****************************** ROW 3 - Flash Player ******************************-->							 
@@ -116,7 +143,10 @@ Description: This page performs the following checks on the client:
 								<td>
 									<div class="displayFlash">
 										<!-- <div id="audioPlayer"></div>  -->
-										<img class="flash-control" src="media/audio-check-mini.png" />
+										<div class="flash-control">
+											<!-- <img src="media/audio-check-mini.png" />-->
+											<div id="audioPlayer"></div>
+										</div>
 										<p class="flash-instructions">Click <span class="play-text">Play</span> to test your audio.</p>
 										<div class="confirmation">
 											<p>Were you able to listen to the audio?</p>
@@ -146,7 +176,10 @@ Description: This page performs the following checks on the client:
 												<p>You do not have a current version of the Flash Player installed. This content requires Flash Player 10 or newer. <a href="http://www.adobe.com/go/getflashplayer" target="_blank">Go get the Flash Player</a> (free).</p>
 												<p>If you do have the current Flash Player, then JavaScript is not enabled in your Web browser. Please enable JavaScript to view this content.</p>
 											</div> -->
-											<img class="flash-control" src="media/mic-check-mini.png" />
+											<div class="flash-control">
+												<!-- <img src="media/mic-check-mini.png" /> -->
+												<div id="micCheck"></div>
+											</div>
 											<ol class="mic-instructions">
 												<li>Click '<strong>Allow</strong>', if prompted by your browser.</li>
 												<li>Click <span class="record-text">Record</span> and talk into your microphone.</li>
@@ -180,7 +213,9 @@ Description: This page performs the following checks on the client:
 								<td>
 									<div class="displayFlash">
 										<p>Try typing in the box below using the target language. Click on the buttons to change the direction of the text.</p>
-										<div class="flash-control" id="keyboardCheck"></div>
+										<div class="flash-control">
+											<div id="keyboardCheck"></div>
+										</div>
 										<p>
 											See Keyboard Setup/Use Instructions<br />
 											<a href="http://symbolcodes.tlt.psu.edu/bylanguage/arabic.html#win" target="_blank">Arabic</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/chinese.html#keyboard" target="_blank">Chinese</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/french.html#winalt" target="_blank">French</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/german.html#winalt" target="_blank">German</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/russian.html#keyboard" target="_blank">Russian</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/spanish.html#winalt" target="_blank">Spanish</a>
@@ -229,4 +264,4 @@ Description: This page performs the following checks on the client:
 	</div><!-- end footer -->
 
 </body>
-</HTML>
+</html>

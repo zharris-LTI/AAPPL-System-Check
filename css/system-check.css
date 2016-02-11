@@ -24,11 +24,17 @@ h4 {
 
 /*********************** Content Styles ***********************/
 
+.system-check-panel {
+	width: 400px;
+	margin: 24px auto 0;
+}
+
 /*~*~*~*~*~*~*~* Row/Column Styles *~*~*~*~*~*~*~*/
 
 .system-check-table {
 	width: 100%;
-	margin-top: 4px;
+	margin-top: 24px;
+	border-collapse:collapse;
 }
 
 .system-check-table th {
@@ -39,7 +45,7 @@ h4 {
 }
 
 .system-check-table tbody {
-	font-size: 0.7em;
+	font-size: 0.85em;
 }
 
 .system-check-table tbody td {
@@ -63,7 +69,7 @@ h4 {
 }
 
 .system-check-table tr td:nth-child(1) {
-	width: 200px;
+	width: 150px;
 	text-align: center;
 	font-weight: bolder;
 }
@@ -93,7 +99,8 @@ h4 {
 	margin-bottom: 6px;
 }
 
-.generic-button {
+.system-check-panel .generic-button,
+.system-check-table .generic-button {
 	display: inline-block;
 	padding: 4px 24px;
 	font-weight: normal;
@@ -110,12 +117,15 @@ h4 {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
 
-.generic-button:hover {
+.system-check-panel .generic-button:hover,
+.system-check-table .generic-button:hover {
 	border: 1px solid #333;
 	cursor: pointer;
+	color: #000;
 }
 
-.generic-button.disabled {
+.system-check-panel .generic-button.disabled,
+.system-check-table .generic-button.disabled {
 	cursor: default;
 	background: #ddd;
 	color: #ccc;
@@ -136,15 +146,15 @@ h4 {
 	list-style: none;
 }
 
-.fa {
+.system-check-table .fa {
 	font-size: 16px;
 }
 
-.fa-check {
+.system-check-table .fa-check {
 	color: #690;
 }
 
-.fa-times {
+.system-check-table .fa-times {
 	color: #f00;
 }
 
@@ -159,6 +169,7 @@ h4 {
 .flash-control,
 #keyboardCheck {
 	display: block;
+	text-align: center;
 	margin: 0 auto;
 	position: relative; 
 }	
@@ -218,6 +229,12 @@ ol.mic-instructions li {
 		color: #a81825;
 		margin-left: 30px;
 	}
+
+/*~*~*~*~*~*~*~* General Styles *~*~*~*~*~*~*~*/
+
+.centered {
+	text-align: center;
+}
 
 /*********************** End Content Styles ***********************/
 
@@ -291,3 +308,8 @@ html, body {
 	height: 70px;
 }
 /* end footer fix */
+
+/*********************** ie styles ***********************/
+.ie .system-check-table td {
+	outline: 4px solid #fff;	
+}

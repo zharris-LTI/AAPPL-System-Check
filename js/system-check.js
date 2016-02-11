@@ -1,3 +1,13 @@
+var portTest = 'fail';
+
+function setSuccess() {
+	portTest = 'success';
+}
+
+function setFail() {
+	portTest = 'fail';
+}
+	
 $(document).ready(function(){
 
 	var allCriteria = $('#bandwidthCheckImg i,#portsCheckImg i,#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
@@ -59,13 +69,32 @@ $(document).ready(function(){
 	var minVersCheck = swfobject.hasFlashPlayerVersion(minVersion);
 	
 	$('.min-version-number').html(minVersion);
-	
+
+	//Port Test
+	var portCheckMsg = $('#portCheckMsg');
+	portCheckMsg.html('<p>Checking port...</p>');
+
+	//port check params
+	var portFlashVars = {
+		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv&FilePath=rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/&FmsUrl=10.0.0.171&FmsAppName=zflv"
+	};
+			
 	//audio check params
+	var audioFlashVars = {
+		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv",
+	};
+
 	var audioParams = {
-		mp3: "media/mic_check.mp3",
-		showvolume: 1,
-		volume: 100,
-		autoplay: 0	
+		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv"
+	};
+
+	//mic check params
+	var micFlashVars = {
+		FilePath : "rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/"
+	};
+
+	var micParams = {
+		FilePath : "rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/"
 	};
 
 	//keyboard check params
@@ -98,11 +127,42 @@ $(document).ready(function(){
 		flashDependantCriteria.removeClass().addClass('fa fa-times');
 	}			
 
-	swfobject.embedSWF("flash/microphone.swf", "micCheck", "300", "150", "10.0.0", false);
-	swfobject.embedSWF("flash/player_mp3_maxi.swf", "audioPlayer", "200", "20", "10.0.0", false, audioParams);
-	swfobject.embedSWF("flash/inputTest.swf", "keyboardCheck", "200", "100", "10.0.0", false, keyboardParams, keyboardAttributes);
-			
-	$('.displayFlash').mousedown(function() {
+	swfobject.embedSWF(	"flash/portTester.swf", 
+						"portCheck", 
+						"0", 
+						"0", 
+						"10.0.0", 
+						false, //Express Install
+						portFlashVars); //FlashVars
+
+	swfobject.embedSWF(	"flash/audioTester.swf", 
+						"audioPlayer", 
+						"100", 
+						"110", 
+						"10.0.0", 
+						false, //Express Install
+						audioFlashVars, //FlashVars
+						audioParams); //Parameters
+						
+	swfobject.embedSWF(	"flash/recordTester.swf", 
+						"micCheck", 
+						"300", 
+						"150", 
+						"10.0.0", 
+						false, //Express Install
+						micFlashVars, //FlashVars
+						micParams); //Parameters
+						
+	swfobject.embedSWF(	"flash/inputTest.swf", 
+						"keyboardCheck", 
+						"200", 
+						"100", 
+						"10.0.0", 
+						false, //Express Install
+						keyboardParams, //Parameters
+						keyboardAttributes); //Attributes
+						
+	$('.flash-control').mousedown(function() {
 		//console.log('clicked');
 		var dialogButtons = $(this).parents("td").find(".confirmation a");
 		dialogButtons.removeClass("disabled");
@@ -117,7 +177,7 @@ $(document).ready(function(){
 		var requirementCheck = allCriteria.filter('.fa-check').length;
 		//console.log(requirementCheck);
 		if(requirementCheck === 6) {
-			$('#login-btn').removeClass('disabled');
+			$('#login-btn').removeClass('disabled').attr('href', 'http://aappldemo.actfltesting.org/');
 		}
 		
 	});
@@ -127,7 +187,20 @@ $(document).ready(function(){
 		if(!disabled) {
 			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-times');
 		}
-		$('#login-btn').addClass('disabled');
+		$('#login-btn').addClass('disabled').removeAttr('href');
 	});
+
+	var portCheckFn = setTimeout( function() {
+			if (portTest === 'success') {
+				portCheckMsg.html('<p>Port 1935 is open.</p>');
+				$('#portsCheckImg i').removeClass().addClass('fa fa-check');
+			} else {
+				portCheckMsg.html('<p>Port 1935 is closed. Please contact your system administrator.</p>');
+				$('#portsCheckImg i').removeClass().addClass('fa fa-times');				
+			}
+	},5000);
+	
+	$('.ie8 .system-check-table tr:odd').css('background-color','#eee');
+	$('.ie8 .system-check-table tr:even').css('background-color','#d9e4ee');
 	
 });
