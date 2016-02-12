@@ -117,11 +117,11 @@ $(document).ready(function(){
 	
 	//audio check params
 	var audioFlashVars = {
-		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv",
+		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv"
 	};
 
 	var audioParams = {
-		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv",
+		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv"
 	};
 
 	//embed audio check flash file
