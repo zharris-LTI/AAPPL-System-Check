@@ -1,18 +1,7 @@
-var portTest = 'fail';
-
-function setSuccess() {
-	portTest = 'success';
-}
-
-function setFail() {
-	portTest = 'fail';
-}
-	
 $(document).ready(function(){
-
-	var allCriteria = $('#bandwidthCheckImg i,#portsCheckImg i,#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
-	var flashDependantCriteria = $('#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
-	//Test Bandwidth
+	
+	//*~*~*~*~*~*~*~*Test Bandwidth*~*~*~*~*~*~*~*//
+	
 	var BandwidthRequired = 1000; // 1500 is 1.5 Mbps or T1
 
 	var imageAddr = "http://support.lti-inc.net/aappl-system-check/media/31120037-5mb.jpg"; 
@@ -48,8 +37,6 @@ $(document).ready(function(){
 			var speedKbps = (speedBps / 1024).toFixed(2);
 			var speedMbps = (speedKbps / 1024).toFixed(2);
 			
-			//console.log(speedKbps + ' < ' + BandwidthRequired);
-			
 			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('fa fa-times'):$('#bandwidthCheckImg i').removeClass().addClass('fa fa-check');
 			
 			oProgress.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps");
@@ -62,32 +49,95 @@ $(document).ready(function(){
 		}
 			return val;
 	}
-	
-	//Test for Flash, Audio and Mic
-	var flashVers = swfobject.getFlashPlayerVersion();
-	var minVersion = '12';
-	var minVersCheck = swfobject.hasFlashPlayerVersion(minVersion);
-	
-	$('.min-version-number').html(minVersion);
 
-	//Port Test
+
+
+	//*~*~*~*~*~*~*~*Flash Test*~*~*~*~*~*~*~*//
+	
+	var allCriteria = $('#bandwidthCheckImg i,#portsCheckImg i,#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
+	var flashDependantCriteria = $('#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
+
+	//Test for Flash, Audio and Mic
+	var minVersion = '12'; //minimum Flash version required
+
+	$('.min-version-number').html(minVersion); //inject minimum Flash version required into markup
+	
+	var flashVers = swfobject.getFlashPlayerVersion(); //Get browser's Flash version
+	
+	var minVersCheck = swfobject.hasFlashPlayerVersion(minVersion); //Check if browser has minimum required Flash version
+	
+	if(minVersCheck){ // if browser passes the required version check display flash control
+		$('.displayFlash').toggle();
+		$('#version-number').html(flashVers.major);
+		$('#flashCheckImg i').removeClass().addClass('fa fa-check');
+	} else if(flashVers.major===0) { //if the browser doesn't have Flash or is blocking display message to install or unblock
+		$('.installFlash').toggle();
+		flashDependantCriteria.removeClass().addClass('fa fa-times');
+	} else { //if the browser has a really old version of Flash display message to upgrade
+		$('.upgradeFlash').toggle();
+		$('#version-number-low').html(flashVers.major);
+		flashDependantCriteria.removeClass().addClass('fa fa-times');
+	}
+
+
+
+	//*~*~*~*~*~*~*~*Port Test*~*~*~*~*~*~*~*//
+	
 	var portCheckMsg = $('#portCheckMsg');
 	portCheckMsg.html('<p>Checking port...</p>');
 
 	//port check params
 	var portFlashVars = {
-		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv&FilePath=rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/&FmsUrl=10.0.0.171&FmsAppName=zflv"
+		FmsUrl : "BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com",
+		FmsAppName : "aappl"
 	};
-			
+
+	//embed port check flash file
+	swfobject.embedSWF(	"flash/portTester.swf", 
+						"portCheck", 
+						"0", 
+						"0", 
+						"10.0.0", 
+						false, //Express Install
+						portFlashVars); //FlashVars
+
+	window.setSuccess = function setSuccess() {
+		portCheckMsg.html('<p>Port 1935 is open.</p>');
+		$('#portsCheckImg i').removeClass().addClass('fa fa-check');
+	}
+
+	window.setFail = function setFail() {
+		portCheckMsg.html('<p>Port 1935 is closed. Please contact your system administrator.</p>');
+		$('#portsCheckImg i').removeClass().addClass('fa fa-times');				
+	}
+
+
+
+	//*~*~*~*~*~*~*~*Audio Test*~*~*~*~*~*~*~*//
+	
 	//audio check params
 	var audioFlashVars = {
 		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv",
 	};
 
 	var audioParams = {
-		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv"
+		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv",
 	};
 
+	//embed audio check flash file
+	swfobject.embedSWF(	"flash/audioTester.swf", 
+						"audioPlayer", 
+						"100", 
+						"110", 
+						"10.0.0", 
+						false, //Express Install
+						audioFlashVars, //FlashVars
+						audioParams); //Parameters
+
+
+
+	//*~*~*~*~*~*~*~*Mic Test*~*~*~*~*~*~*~*//
+	
 	//mic check params
 	var micFlashVars = {
 		FilePath : "rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/"
@@ -97,6 +147,20 @@ $(document).ready(function(){
 		FilePath : "rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/"
 	};
 
+	//embed mic check flash file
+	swfobject.embedSWF(	"flash/recordTester.swf", 
+						"micCheck", 
+						"300", 
+						"150", 
+						"10.0.0", 
+						false, //Express Install
+						micFlashVars, //FlashVars
+						micParams); //Parameters
+
+
+
+	//*~*~*~*~*~*~*~*Keyboard Test*~*~*~*~*~*~*~*//
+	
 	//keyboard check params
 	var keyboardParams = {
 		quality: "high", 
@@ -113,46 +177,8 @@ $(document).ready(function(){
 	var keyboardAttributes = {
 		bgcolor: "#FFFFEE"
 	};
-	
-	if(minVersCheck){
-		$('.displayFlash').toggle();
-		$('#version-number').html(flashVers.major);
-		$('#flashCheckImg i').removeClass().addClass('fa fa-check');
-	} else if(flashVers.major===0) {
-		$('.installFlash').toggle();
-		flashDependantCriteria.removeClass().addClass('fa fa-times');
-	} else {
-		$('.upgradeFlash').toggle();
-		$('#version-number-low').html(flashVers.major);
-		flashDependantCriteria.removeClass().addClass('fa fa-times');
-	}			
 
-	swfobject.embedSWF(	"flash/portTester.swf", 
-						"portCheck", 
-						"0", 
-						"0", 
-						"10.0.0", 
-						false, //Express Install
-						portFlashVars); //FlashVars
-
-	swfobject.embedSWF(	"flash/audioTester.swf", 
-						"audioPlayer", 
-						"100", 
-						"110", 
-						"10.0.0", 
-						false, //Express Install
-						audioFlashVars, //FlashVars
-						audioParams); //Parameters
-						
-	swfobject.embedSWF(	"flash/recordTester.swf", 
-						"micCheck", 
-						"300", 
-						"150", 
-						"10.0.0", 
-						false, //Express Install
-						micFlashVars, //FlashVars
-						micParams); //Parameters
-						
+	//embed keyboard check flash file
 	swfobject.embedSWF(	"flash/inputTest.swf", 
 						"keyboardCheck", 
 						"200", 
@@ -161,46 +187,47 @@ $(document).ready(function(){
 						false, //Express Install
 						keyboardParams, //Parameters
 						keyboardAttributes); //Attributes
-						
-	$('.flash-control').mousedown(function() {
-		//console.log('clicked');
-		var dialogButtons = $(this).parents("td").find(".confirmation a");
-		dialogButtons.removeClass("disabled");
-	});
-			
-	$('a.passCheck').click(function() {
+
+
+
+	//*~*~*~*~*~*~*~*Yes/No button controls*~*~*~*~*~*~*~*//
+	
+	$('a.passCheck').click(function() { //When Yes is clicked display check in the corresponding row
 		var disabled = $(this).hasClass("disabled");
 		if(!disabled) {
 			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-check');
 		}
 		
 		var requirementCheck = allCriteria.filter('.fa-check').length;
-		//console.log(requirementCheck);
-		if(requirementCheck === 6) {
+		if(requirementCheck === 6) { // If all rows are checked, enable link to login page
 			$('#login-btn').removeClass('disabled').attr('href', 'http://aappldemo.actfltesting.org/');
 		}
 		
 	});
 	
-	$('a.failCheck').click(function() {
+	$('a.failCheck').click(function() { // When No is clicked display X in the corresponding row
 		var disabled = $(this).hasClass("disabled");		
 		if(!disabled) {
 			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-times');
 		}
-		$('#login-btn').addClass('disabled').removeAttr('href');
+		$('#login-btn').addClass('disabled').removeAttr('href'); // Disable the login link if need be
 	});
-
-	var portCheckFn = setTimeout( function() {
-			if (portTest === 'success') {
-				portCheckMsg.html('<p>Port 1935 is open.</p>');
-				$('#portsCheckImg i').removeClass().addClass('fa fa-check');
-			} else {
-				portCheckMsg.html('<p>Port 1935 is closed. Please contact your system administrator.</p>');
-				$('#portsCheckImg i').removeClass().addClass('fa fa-times');				
-			}
-	},5000);
 	
+	// Enable Yes/No buttons when the corresponding flash control is clicked
+	window.audioBtnClick = function audioBtnClick() {	
+		$('#audio-dialog a').removeClass("disabled");
+	}	
+
+	window.recordBtnClick = function recordBtnClick() {	
+		$('#mic-dialog a').removeClass("disabled");
+	}
+
+
+
+	//*~*~*~*~*~*~*~*Intenet Explorer hacks*~*~*~*~*~*~*~*//
+	
+	//zebra striping for ie8
 	$('.ie8 .system-check-table tr:odd').css('background-color','#eee');
 	$('.ie8 .system-check-table tr:even').css('background-color','#d9e4ee');
-	
+		
 });

@@ -29,7 +29,7 @@ Description: This page performs the following checks on the client:
 <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
 <meta HTTP-EQUIV="expires"CONTENT="0">
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/normalize.css"/>	
 <link rel="stylesheet" href="http://aappldemo.actfltesting.org/css/aappl-test.css" />
 <link rel="stylesheet" href="css/system-check.css"/>	
@@ -148,7 +148,7 @@ Description: This page performs the following checks on the client:
 											<div id="audioPlayer"></div>
 										</div>
 										<p class="flash-instructions">Click <span class="play-text">Play</span> to test your audio.</p>
-										<div class="confirmation">
+										<div id="audio-dialog" class="confirmation">
 											<p>Were you able to listen to the audio?</p>
 											<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
 										</div>
@@ -187,7 +187,7 @@ Description: This page performs the following checks on the client:
 												<li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
 												<li>Click '<strong>Configure</strong>', select the Remember check box and click the '<strong>Close</strong>' button.</li>
 											</ol>
-											<div class="confirmation">
+											<div id="mic-dialog" class="confirmation">
 												<p>Were you able to record your voice?</p>
 												<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
 											</div>
@@ -222,7 +222,7 @@ Description: This page performs the following checks on the client:
 										</p>
 										<div class="confirmation">
 											<p>Can you type in the box below using the target language?</p>
-											<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
+											<a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
 										</div>
 									</div>
 									<div class="installFlash">
