@@ -8,13 +8,13 @@ $(document).ready(function(){
 	var downloadSize = 4995374; //bytes
 
 	window.onload = function() {
-		var oProgress = $("#progress");
-		oProgress.html("Please wait while your connection speed is being calculated...");
+		var connectionCheck = $("#progress");
+		connectionCheck.html("Please wait while your connection speed is being calculated...");
 		window.setTimeout(MeasureConnectionSpeed, 1);
 	};
 
 	function MeasureConnectionSpeed() {
-		var oProgress = $("#progress");
+		var connectionCheck = $("#progress");
 		var startTime, endTime;
 		var download = new Image();
 		download.onload = function () {
@@ -23,7 +23,7 @@ $(document).ready(function(){
 		}
 		
 		download.onerror = function (err, msg) {
-			oProgress.html("Error performing this test");
+			connectionCheck.html("Error performing this test");
 		}
 		
 		startTime = (new Date()).getTime();
@@ -39,7 +39,7 @@ $(document).ready(function(){
 			
 			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('fa fa-times'):$('#bandwidthCheckImg i').removeClass().addClass('fa fa-check');
 			
-			oProgress.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps");
+			connectionCheck.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps");
 		}
 	}
 	
@@ -55,10 +55,10 @@ $(document).ready(function(){
 	//*~*~*~*~*~*~*~*Flash Test*~*~*~*~*~*~*~*//
 	
 	var allCriteria = $('#bandwidthCheckImg i,#portsCheckImg i,#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
-	var flashDependantCriteria = $('#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
+	var flashDependantCriteria = $('#portsCheckImg i,#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
 
 	//Test for Flash, Audio and Mic
-	var minVersion = '12'; //minimum Flash version required
+	var minVersion = '10'; //minimum Flash version required
 
 	$('.min-version-number').html(minVersion); //inject minimum Flash version required into markup
 	
@@ -70,10 +70,10 @@ $(document).ready(function(){
 		$('.displayFlash').toggle();
 		$('#version-number').html(flashVers.major);
 		$('#flashCheckImg i').removeClass().addClass('fa fa-check');
-	} else if(flashVers.major===0) { //if the browser doesn't have Flash or is blocking display message to install or unblock
+	} else if(flashVers.major===0) { // if the browser doesn't have Flash or is blocking display message to install or unblock
 		$('.installFlash').toggle();
 		flashDependantCriteria.removeClass().addClass('fa fa-times');
-	} else { //if the browser has a really old version of Flash display message to upgrade
+	} else { // if the browser has a really old version of Flash display message to upgrade
 		$('.upgradeFlash').toggle();
 		$('#version-number-low').html(flashVers.major);
 		flashDependantCriteria.removeClass().addClass('fa fa-times');
@@ -128,7 +128,7 @@ $(document).ready(function(){
 	swfobject.embedSWF(	"flash/audioTester.swf", 
 						"audioPlayer", 
 						"100", 
-						"110", 
+						"62", 
 						"10.0.0", 
 						false, //Express Install
 						audioFlashVars, //FlashVars
@@ -150,8 +150,8 @@ $(document).ready(function(){
 	//embed mic check flash file
 	swfobject.embedSWF(	"flash/recordTester.swf", 
 						"micCheck", 
-						"300", 
-						"150", 
+						"250", 
+						"140", 
 						"10.0.0", 
 						false, //Express Install
 						micFlashVars, //FlashVars
