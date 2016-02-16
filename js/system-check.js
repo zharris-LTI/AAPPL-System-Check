@@ -200,7 +200,7 @@ $(document).ready(function(){
 		
 		var requirementCheck = allCriteria.filter('.fa-check').length;
 		if(requirementCheck === 6) { // If all rows are checked, enable link to login page
-			$('#login-btn').removeClass('disabled').attr('href', 'http://aappldemo.actfltesting.org/');
+			$('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/');
 		}
 		
 	});
