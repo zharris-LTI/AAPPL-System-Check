@@ -157,6 +157,20 @@ $(document).ready(function(){
 						micFlashVars, //FlashVars
 						micParams); //Parameters
 
+	// If no mic detected, hide mic check and ask if user is taking a speaking assessment
+	window.micCheckFail = function micCheckFail() {
+		$('#MicFlashDiv').fadeOut();
+		$('#NoMicDiv').fadeIn();
+	}
+	
+	$('#NoMicDiv .failCheck').click(function() { // Display help message if user is taking a speaking assessment
+		$('#speaking-help-msg').slideDown();
+	});
+
+	$('#NoMicDiv .passCheck').click(function() { // Hide help message if user is not taking a speaking assessment
+		$('#speaking-help-msg').slideUp();
+	});
+
 
 
 	//*~*~*~*~*~*~*~*Keyboard Test*~*~*~*~*~*~*~*//
@@ -225,9 +239,9 @@ $(document).ready(function(){
 
 
 	//*~*~*~*~*~*~*~*Intenet Explorer hacks*~*~*~*~*~*~*~*//
-	
+
 	//zebra striping for ie8
 	$('.ie8 .system-check-table tr:odd').css('background-color','#eee');
 	$('.ie8 .system-check-table tr:even').css('background-color','#d9e4ee');
-		
+
 });

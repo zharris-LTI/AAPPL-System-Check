@@ -132,12 +132,8 @@ h4 {
 	border: 1px solid #ccc;
 }
 
-.passCheck {
-	margin-right: 2px;
-}
-
-.failCheck {
-	margin-left: 2px;
+.passCheck, .failCheck {
+	margin: 0 2px;
 }
 
 /*~*~*~*~*~*~*~* Pass/Fail Icons *~*~*~*~*~*~*~*/
