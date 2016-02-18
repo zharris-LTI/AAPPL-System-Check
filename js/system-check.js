@@ -159,8 +159,8 @@ $(document).ready(function(){
 
 	// If no mic detected, hide mic check and ask if user is taking a speaking assessment
 	window.micCheckFail = function micCheckFail() {
-		$('#MicFlashDiv').fadeOut();
-		$('#NoMicDiv').fadeIn();
+		$('#MicFlashDiv').toggle();
+		$('#NoMicDiv').toggle();
 	}
 	
 	$('#NoMicDiv .failCheck').click(function() { // Display help message if user is taking a speaking assessment
