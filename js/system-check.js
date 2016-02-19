@@ -40,6 +40,7 @@ $(document).ready(function(){
 			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('fa fa-times'):$('#bandwidthCheckImg i').removeClass().addClass('fa fa-check');
 			
 			connectionCheck.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps");
+			checkRequirements();
 		}
 	}
 	
@@ -54,7 +55,6 @@ $(document).ready(function(){
 
 	//*~*~*~*~*~*~*~*Flash Test*~*~*~*~*~*~*~*//
 	
-	var allCriteria = $('#bandwidthCheckImg i,#portsCheckImg i,#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
 	var flashDependantCriteria = $('#portsCheckImg i,#flashCheckImg i,#MP3CheckImg i,#microphoneCheckImg i,#languageCheckImg i');
 
 	//Test for Flash, Audio and Mic
@@ -70,6 +70,7 @@ $(document).ready(function(){
 		$('.displayFlash').toggle();
 		$('#version-number').html(flashVers.major);
 		$('#flashCheckImg i').removeClass().addClass('fa fa-check');
+		checkRequirements();
 	} else if(flashVers.major===0) { // if the browser doesn't have Flash or is blocking display message to install or unblock
 		$('.installFlash').toggle();
 		flashDependantCriteria.removeClass().addClass('fa fa-times');
@@ -104,6 +105,7 @@ $(document).ready(function(){
 	window.setSuccess = function setSuccess() {
 		portCheckMsg.html('<p>Port 1935 is open.</p>');
 		$('#portsCheckImg i').removeClass().addClass('fa fa-check');
+		checkRequirements();
 	}
 
 	window.setFail = function setFail() {
@@ -212,11 +214,7 @@ $(document).ready(function(){
 			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-check');
 		}
 		
-		var requirementCheck = allCriteria.filter('.fa-check').length;
-		if(requirementCheck === 6) { // If all rows are checked, enable link to login page
-			$('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/');
-		}
-		
+		checkRequirements();
 	});
 	
 	$('a.failCheck').click(function() { // When No is clicked display X in the corresponding row
@@ -236,12 +234,19 @@ $(document).ready(function(){
 		$('#mic-dialog a').removeClass("disabled");
 	}
 
-
+	 // If all rows are checked, enable link to login page
+	function checkRequirements() {
+		var icons = $('td > i').filter('.fa').length;
+		var iconsChecked = $('td > i').filter('.fa-check').length;
+		
+		if (icons === iconsChecked) 
+			$('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/');
+	}
 
 	//*~*~*~*~*~*~*~*Intenet Explorer hacks*~*~*~*~*~*~*~*//
 
 	//zebra striping for ie8
 	$('.ie8 .system-check-table tr:odd').css('background-color','#eee');
 	$('.ie8 .system-check-table tr:even').css('background-color','#d9e4ee');
-
+	$('.ie8 .system-check-table tr:eq(1)').css('background-color','#fff');	
 });
