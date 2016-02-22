@@ -71,7 +71,7 @@ h4 {
 .system-check-table tr td:nth-child(1) {
 	width: 150px;
 	text-align: center;
-	font-weight: bolder;
+	font-weight: bold;
 }
 
 .system-check-table tr td:nth-child(2) {
@@ -152,6 +152,18 @@ h4 {
 
 .system-check-table .fa-times {
 	color: #f00;
+}
+
+.system-check-table .waiting:before {
+	display: inline-block;
+	margin-left: -2px;
+	content: url(../media/waiting.gif);
+}
+
+.system-check-table .waiting-static:before {
+	display: inline-block;
+	margin-left: -2px;
+	content: url(../media/waiting-static.png);
 }
 
 /*~*~*~*~*~*~*~* Flash Controls *~*~*~*~*~*~*~*/

@@ -37,7 +37,7 @@ $(document).ready(function(){
 			var speedKbps = (speedBps / 1024).toFixed(2);
 			var speedMbps = (speedKbps / 1024).toFixed(2);
 			
-			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('fa fa-times'):$('#bandwidthCheckImg i').removeClass().addClass('fa fa-check');
+			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-times'):$('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-check');
 			
 			connectionCheck.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps");
 			checkRequirements();
@@ -69,15 +69,15 @@ $(document).ready(function(){
 	if(minVersCheck){ // if browser passes the required version check display flash control
 		$('.displayFlash').toggle();
 		$('#version-number').html(flashVers.major);
-		$('#flashCheckImg i').removeClass().addClass('fa fa-check');
+		$('#flashCheckImg i').removeClass().addClass('check-status fa fa-check');
 		checkRequirements();
 	} else if(flashVers.major===0) { // if the browser doesn't have Flash or is blocking display message to install or unblock
 		$('.installFlash').toggle();
-		flashDependantCriteria.removeClass().addClass('fa fa-times');
+		flashDependantCriteria.removeClass().addClass('check-status fa fa-times');
 	} else { // if the browser has a really old version of Flash display message to upgrade
 		$('.upgradeFlash').toggle();
 		$('#version-number-low').html(flashVers.major);
-		flashDependantCriteria.removeClass().addClass('fa fa-times');
+		flashDependantCriteria.removeClass().addClass('check-status fa fa-times');
 	}
 
 
@@ -104,13 +104,13 @@ $(document).ready(function(){
 
 	window.setSuccess = function setSuccess() {
 		portCheckMsg.html('<p>Port 1935 is open.</p>');
-		$('#portsCheckImg i').removeClass().addClass('fa fa-check');
+		$('#portsCheckImg i').removeClass().addClass('check-status fa fa-check');
 		checkRequirements();
 	}
 
 	window.setFail = function setFail() {
 		portCheckMsg.html('<p>Port 1935 is closed. Please contact your system administrator.</p>');
-		$('#portsCheckImg i').removeClass().addClass('fa fa-times');				
+		$('#portsCheckImg i').removeClass().addClass('check-status fa fa-times');				
 	}
 
 
@@ -211,7 +211,7 @@ $(document).ready(function(){
 	$('a.passCheck').click(function() { //When Yes is clicked display check in the corresponding row
 		var disabled = $(this).hasClass("disabled");
 		if(!disabled) {
-			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-check');
+			$(this).parents("tr").find("td i").removeClass().addClass('check-status fa fa-check');
 		}
 		
 		checkRequirements();
@@ -220,7 +220,7 @@ $(document).ready(function(){
 	$('a.failCheck').click(function() { // When No is clicked display X in the corresponding row
 		var disabled = $(this).hasClass("disabled");		
 		if(!disabled) {
-			$(this).parents("tr").find("td i").removeClass().addClass('fa fa-times');
+			$(this).parents("tr").find("td i").removeClass().addClass('check-status fa fa-times');
 		}
 		$('#login-btn').addClass('disabled').removeAttr('href'); // Disable the login link if need be
 	});
@@ -236,8 +236,11 @@ $(document).ready(function(){
 
 	 // If all rows are checked, enable link to login page
 	function checkRequirements() {
-		var icons = $('td > i').filter('.fa').length;
+		var icons = $('td > i').filter('.check-status').length;
 		var iconsChecked = $('td > i').filter('.fa-check').length;
+		
+		console.log(icons);
+		console.log(iconsChecked);
 		
 		if (icons === iconsChecked) 
 			$('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/');
@@ -249,4 +252,10 @@ $(document).ready(function(){
 	$('.ie8 .system-check-table tr:odd').css('background-color','#eee');
 	$('.ie8 .system-check-table tr:even').css('background-color','#d9e4ee');
 	$('.ie8 .system-check-table tr:eq(1)').css('background-color','#fff');	
+
+	//column styles for ie8
+	$('.ie8 .system-check-table tr td:nth-child(1)').css('width','150px').css('text-align','center').css('font-weight','bold');	
+	$('.ie8 .system-check-table tr td:nth-child(2)').css('width','200px');	
+	$('.ie8 .system-check-table tr td:nth-child(3)').css('width','300px');	
+	$('.ie8 .system-check-table tr td:nth-child(4)').css('text-align','center');
 });
