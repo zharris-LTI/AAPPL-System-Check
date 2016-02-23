@@ -239,9 +239,6 @@ $(document).ready(function(){
 		var icons = $('td > i').filter('.check-status').length;
 		var iconsChecked = $('td > i').filter('.fa-check').length;
 		
-		console.log(icons);
-		console.log(iconsChecked);
-		
 		if (icons === iconsChecked) 
 			$('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/');
 	}
