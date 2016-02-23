@@ -109,7 +109,7 @@ $(document).ready(function(){
 	}
 
 	window.setFail = function setFail() {
-		portCheckMsg.html('<p>Port 1935 is closed. Please contact your system administrator.</p>');
+		portCheckMsg.html('<div class="error-msg"><p>Port 1935 is closed. Please contact your system administrator.</p></div>');
 		$('#portsCheckImg i').removeClass().addClass('check-status fa fa-times');				
 	}
 
@@ -164,14 +164,6 @@ $(document).ready(function(){
 		$('#MicFlashDiv').toggle();
 		$('#NoMicDiv').toggle();
 	}
-	
-	$('#NoMicDiv .failCheck').click(function() { // Display help message if user is taking a speaking assessment
-		$('#speaking-help-msg').slideDown();
-	});
-
-	$('#NoMicDiv .passCheck').click(function() { // Hide help message if user is not taking a speaking assessment
-		$('#speaking-help-msg').slideUp();
-	});
 
 
 
@@ -212,6 +204,7 @@ $(document).ready(function(){
 		var disabled = $(this).hasClass("disabled");
 		if(!disabled) {
 			$(this).parents("tr").find("td i").removeClass().addClass('check-status fa fa-check');
+			$(this).parent('div').parent('div').find('.error-msg').slideUp();
 		}
 		
 		checkRequirements();
@@ -221,6 +214,7 @@ $(document).ready(function(){
 		var disabled = $(this).hasClass("disabled");		
 		if(!disabled) {
 			$(this).parents("tr").find("td i").removeClass().addClass('check-status fa fa-times');
+			$(this).parent('div').parent('div').find('.error-msg').slideDown();
 		}
 		$('#login-btn').addClass('disabled').removeAttr('href'); // Disable the login link if need be
 	});

@@ -225,23 +225,22 @@ ol.mic-instructions li {
 	color: #690; 
 }
 
-	.show {
-		display: block;
-	}
-
-	.hide {
-		display: none;
-	}
-
-	#errorMessageDiv{
-		color: #a81825;
-		margin-left: 30px;
-	}
-
 /*~*~*~*~*~*~*~* General Styles *~*~*~*~*~*~*~*/
 
 .centered {
 	text-align: center;
+}
+
+.error-msg {
+	color: #f00;
+}
+
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
 }
 
 /*********************** End Content Styles ***********************/
