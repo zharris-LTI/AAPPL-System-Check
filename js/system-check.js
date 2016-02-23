@@ -37,7 +37,7 @@ $(document).ready(function(){
 			var speedKbps = (speedBps / 1024).toFixed(2);
 			var speedMbps = (speedKbps / 1024).toFixed(2);
 			
-			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-times'):$('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-check');
+			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-times').parents('tr').find('.error-msg').slideDown():$('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-check');
 			
 			connectionCheck.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps");
 			checkRequirements();
@@ -204,6 +204,7 @@ $(document).ready(function(){
 		var disabled = $(this).hasClass("disabled");
 		if(!disabled) {
 			$(this).parents("tr").find("td i").removeClass().addClass('check-status fa fa-check');
+			console.log($(this).parents("tr"));
 			$(this).parent('div').parent('div').find('.error-msg').slideUp();
 		}
 		

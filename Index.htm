@@ -89,7 +89,12 @@ Description: This page performs the following checks on the client:
 							<tr>
 								<td>Internet Connection Speed</td>
 								<td><p>Your internet connect speed must be at least 1,000 Kbps per second, per tester.</p></td>
-								<td><p id="progress"></p></td>
+								<td>
+									<p id="progress"></p>
+									<div class="error-msg hide">
+										<p>Your internet connection speed is not fast enough to take the test. Please contact your system administrator.</p>
+									</div>
+								</td>
 								<td id="bandwidthCheckImg"><i class="check-status waiting"></i></td>
 							</tr>
 							
