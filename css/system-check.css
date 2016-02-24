@@ -235,6 +235,11 @@ ol.mic-instructions li {
 	color: #f00;
 }
 
+.no-script-message {
+	margin-top: 30px;
+	text-align: center;
+}
+
 .show {
 	display: block;
 }

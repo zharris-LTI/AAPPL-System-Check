@@ -8,13 +8,18 @@ $(document).ready(function(){
 	var downloadSize = 4995374; //bytes
 
 	window.onload = function() {
-		var connectionCheck = $("#progress");
-		connectionCheck.html("Please wait while your connection speed is being calculated...");
+		var systemCheckTable = $('#system-check');
+		var connectionCheck = $('#progress');
+		var minConnection = $('#min-connection');
+		
+		systemCheckTable.show();
+		minConnection.html(commaSeparateNumber(BandwidthRequired));
+		connectionCheck.html('Please wait while your connection speed is being calculated...');
 		window.setTimeout(MeasureConnectionSpeed, 1);
 	};
 
 	function MeasureConnectionSpeed() {
-		var connectionCheck = $("#progress");
+		var connectionCheck = $('#progress');
 		var startTime, endTime;
 		var download = new Image();
 		download.onload = function () {
@@ -23,7 +28,7 @@ $(document).ready(function(){
 		}
 		
 		download.onerror = function (err, msg) {
-			connectionCheck.html("Error performing this test");
+			connectionCheck.html('Error performing this test');
 		}
 		
 		startTime = (new Date()).getTime();
@@ -39,7 +44,7 @@ $(document).ready(function(){
 			
 			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-times').parents('tr').find('.error-msg').slideDown():$('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-check');
 			
-			connectionCheck.html("Your internet connection speed is: " + commaSeparateNumber(speedKbps) + " Kbps");
+			connectionCheck.html('Your internet connection speed is: ' + commaSeparateNumber(speedKbps) + ' Kbps');
 			checkRequirements();
 		}
 	}
@@ -89,16 +94,16 @@ $(document).ready(function(){
 
 	//port check params
 	var portFlashVars = {
-		FmsUrl : "BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com",
-		FmsAppName : "aappl"
+		FmsUrl : 'BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com',
+		FmsAppName : 'aappl'
 	};
 
 	//embed port check flash file
-	swfobject.embedSWF(	"flash/portTester.swf", 
-						"portCheck", 
-						"0", 
-						"0", 
-						"10.0.0", 
+	swfobject.embedSWF(	'flash/portTester.swf', 
+						'portCheck', 
+						'0', 
+						'0', 
+						'10.0.0', 
 						false, //Express Install
 						portFlashVars); //FlashVars
 
@@ -111,6 +116,7 @@ $(document).ready(function(){
 	window.setFail = function setFail() {
 		portCheckMsg.html('<div class="error-msg"><p>Port 1935 is closed. Please contact your system administrator.</p></div>');
 		$('#portsCheckImg i').removeClass().addClass('check-status fa fa-times');				
+		checkRequirements();
 	}
 
 
@@ -119,19 +125,19 @@ $(document).ready(function(){
 	
 	//audio check params
 	var audioFlashVars = {
-		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv"
+		VolumeCheck : 'http://duhbaddmanamr.cloudfront.net/mic_check.flv'
 	};
 
 	var audioParams = {
-		VolumeCheck : "http://duhbaddmanamr.cloudfront.net/mic_check.flv"
+		VolumeCheck : 'http://duhbaddmanamr.cloudfront.net/mic_check.flv'
 	};
 
 	//embed audio check flash file
-	swfobject.embedSWF(	"flash/audioTester.swf", 
-						"audioPlayer", 
-						"100", 
-						"62", 
-						"10.0.0", 
+	swfobject.embedSWF(	'flash/audioTester.swf', 
+						'audioPlayer', 
+						'100', 
+						'62', 
+						'10.0.0', 
 						false, //Express Install
 						audioFlashVars, //FlashVars
 						audioParams); //Parameters
@@ -142,19 +148,19 @@ $(document).ready(function(){
 	
 	//mic check params
 	var micFlashVars = {
-		FilePath : "rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/"
+		FilePath : 'rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/'
 	};
 
 	var micParams = {
-		FilePath : "rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/"
+		FilePath : 'rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/'
 	};
 
 	//embed mic check flash file
-	swfobject.embedSWF(	"flash/recordTester.swf", 
-						"micCheck", 
-						"250", 
-						"140", 
-						"10.0.0", 
+	swfobject.embedSWF(	'flash/recordTester.swf', 
+						'micCheck', 
+						'250', 
+						'140', 
+						'10.0.0', 
 						false, //Express Install
 						micFlashVars, //FlashVars
 						micParams); //Parameters
@@ -171,27 +177,27 @@ $(document).ready(function(){
 	
 	//keyboard check params
 	var keyboardParams = {
-		quality: "high", 
-		play: "true", 
-		loop: "true",
-		scale: "showall", 
-		wmode: "transparent",//"window",
-		devicefont: "false", 
-		menu: "false",
-		allowFullScreen: "false",
-		allowScriptAccess: "sameDomain"
+		quality: 'high', 
+		play: 'true', 
+		loop: 'true',
+		scale: 'showall', 
+		wmode: 'transparent',//'window',
+		devicefont: 'false', 
+		menu: 'false',
+		allowFullScreen: 'false',
+		allowScriptAccess: 'sameDomain'
 	};
 	
 	var keyboardAttributes = {
-		bgcolor: "#FFFFEE"
+		bgcolor: '#FFFFEE'
 	};
 
 	//embed keyboard check flash file
-	swfobject.embedSWF(	"flash/inputTest.swf", 
-						"keyboardCheck", 
-						"200", 
-						"100", 
-						"10.0.0", 
+	swfobject.embedSWF(	'flash/inputTest.swf',
+						'keyboardCheck', 
+						'200', 
+						'100', 
+						'10.0.0',
 						false, //Express Install
 						keyboardParams, //Parameters
 						keyboardAttributes); //Attributes
@@ -201,32 +207,30 @@ $(document).ready(function(){
 	//*~*~*~*~*~*~*~*Yes/No button controls*~*~*~*~*~*~*~*//
 	
 	$('a.passCheck').click(function() { //When Yes is clicked display check in the corresponding row
-		var disabled = $(this).hasClass("disabled");
+		var disabled = $(this).hasClass('disabled');
 		if(!disabled) {
-			$(this).parents("tr").find("td i").removeClass().addClass('check-status fa fa-check');
-			console.log($(this).parents("tr"));
+			$(this).parents('tr').find('td i').removeClass().addClass('check-status fa fa-check');
 			$(this).parent('div').parent('div').find('.error-msg').slideUp();
-		}
-		
+		}		
 		checkRequirements();
 	});
 	
 	$('a.failCheck').click(function() { // When No is clicked display X in the corresponding row
-		var disabled = $(this).hasClass("disabled");		
+		var disabled = $(this).hasClass('disabled');
 		if(!disabled) {
-			$(this).parents("tr").find("td i").removeClass().addClass('check-status fa fa-times');
+			$(this).parents('tr').find('td i').removeClass().addClass('check-status fa fa-times');
 			$(this).parent('div').parent('div').find('.error-msg').slideDown();
 		}
-		$('#login-btn').addClass('disabled').removeAttr('href'); // Disable the login link if need be
+		checkRequirements();
 	});
 	
 	// Enable Yes/No buttons when the corresponding flash control is clicked
 	window.audioBtnClick = function audioBtnClick() {	
-		$('#audio-dialog a').removeClass("disabled");
+		$('#audio-dialog a').removeClass('disabled');
 	}	
 
 	window.recordBtnClick = function recordBtnClick() {	
-		$('#mic-dialog a').removeClass("disabled");
+		$('#mic-dialog a').removeClass('disabled');
 	}
 
 	 // If all rows are checked, enable link to login page
@@ -234,8 +238,7 @@ $(document).ready(function(){
 		var icons = $('td > i').filter('.check-status').length;
 		var iconsChecked = $('td > i').filter('.fa-check').length;
 		
-		if (icons === iconsChecked) 
-			$('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/');
+		(icons === iconsChecked)? $('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/'): $('#login-btn').addClass('disabled').removeAttr('href');
 	}
 
 	//*~*~*~*~*~*~*~*Intenet Explorer hacks*~*~*~*~*~*~*~*//

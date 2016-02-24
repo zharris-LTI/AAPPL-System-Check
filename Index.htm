@@ -64,7 +64,14 @@ Description: This page performs the following checks on the client:
 							<a id="login-btn" class="generic-button disabled">Go to Sign In</a>
 						</div>
 					</div>
-					<table class="system-check-table">
+					
+					<noscript>
+						<div class="error-msg no-script-message">
+							In order to perform the system check and take the AAPPL Test, you must have javascript enabled. Please contact your system administrator.
+						</div>
+					</noscript>
+					
+					<table id="system-check" class="system-check-table hide">
 						<thead>
 							<tr>
 								<th>CRITERIA</th>
@@ -88,7 +95,7 @@ Description: This page performs the following checks on the client:
 							<!--****************************** ROW 1 - Bandwidth ******************************-->						 
 							<tr>
 								<td>Internet Connection Speed</td>
-								<td><p>Your internet connect speed must be at least 1,000 Kbps per second, per tester.</p></td>
+								<td><p>Your internet connect speed must be at least <span id="min-connection"></span> Kbps per second, per tester.</p></td>
 								<td>
 									<p id="progress"></p>
 									<div class="error-msg hide">
