@@ -182,15 +182,11 @@ h4 {
 	position: relative; 
 }	
 
-.flash-instructions {
+/*~*~*~*~*~*~*~* Mic/Audio Instructions *~*~*~*~*~*~*~*/
+
+.audio-instructions {
 	text-align: center;
 }
-
-td {
-	position: relative;
-}
-
-/*~*~*~*~*~*~*~* Mic/Audio Instructions *~*~*~*~*~*~*~*/
 
 ol.mic-instructions {
 	padding-left: 12px;	
