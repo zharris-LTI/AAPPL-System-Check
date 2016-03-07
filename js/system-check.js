@@ -236,9 +236,20 @@ $(document).ready(function(){
 	 // If all rows are checked, enable link to login page
 	function checkRequirements() {
 		var icons = $('td > i').filter('.check-status').length;
+		var iconsWaiting = $('td > i').filter('.waiting').length;
 		var iconsChecked = $('td > i').filter('.fa-check').length;
 		
-		(icons === iconsChecked)? $('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/'): $('#login-btn').addClass('disabled').removeAttr('href');
+		if (iconsWaiting === 0) {
+			if (icons === iconsChecked) {
+				$('#login-btn').removeClass('disabled').attr('href', 'http://aappl.actfltesting.org/');
+				$('#pass-message-top, #pass-message-bottom').slideDown();
+				$('#fail-message-top, #fail-message-bottom').slideUp();
+			} else {
+				$('#login-btn').addClass('disabled').removeAttr('href');
+				$('#pass-message-top, #pass-message-bottom').slideUp();
+				$('#fail-message-top, #fail-message-bottom').slideDown();
+			}			
+		}
 	}
 
 	//*~*~*~*~*~*~*~*Intenet Explorer hacks*~*~*~*~*~*~*~*//

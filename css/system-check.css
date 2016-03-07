@@ -34,6 +34,41 @@ a {
 	margin: 24px auto 0;
 }
 
+.system-msg {
+	border-left: 12px solid;
+	margin: 24px auto 0;
+}
+
+	.system-msg.error {
+		border-color: #f00;
+	}
+
+	.system-msg.error .fa {
+		color: #f00;
+	}
+
+	.system-msg.pass {
+		border-color: #690;
+	}
+
+	.system-msg.pass  .fa {
+		color: #690;
+	}
+
+	.system-msg .fa {
+		float: left;
+		margin: 10px 6px 0 -10px;
+		font-size: 1.5em;
+	}
+
+	.system-msg p {
+		padding: 12px 0 0 16px;
+		margin: 0;
+		text-align: center;
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+
 /*~*~*~*~*~*~*~* Row/Column Styles *~*~*~*~*~*~*~*/
 
 .system-check-table {
