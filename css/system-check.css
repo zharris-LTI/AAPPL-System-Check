@@ -15,6 +15,11 @@ h4 {
 	font-size: 1em;
 }
 
+a {
+	font-weight: bold;
+	color: #00f;
+}
+
 .footer .footer-copy p {
 	font-size: 0.7em;	
 	line-height: .7em;
@@ -40,12 +45,12 @@ h4 {
 .system-check-table th {
 	background-color: #f08b20;
 	color: #fff;
-	font-size: 0.9em;
+	font-size: 1.1em;
 	padding: 10px 0;
 }
 
 .system-check-table tbody {
-	font-size: 0.85em;
+	font-size: 1em;
 }
 
 .system-check-table tbody td {
@@ -86,11 +91,53 @@ h4 {
 	text-align: center;
 }
 
+/*~*~*~*~*~*~*~* Generic Panel *~*~*~*~*~*~*~*/
+
+.panel 
+{
+    background-color: #eee;
+    padding: 0 20px 10px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    box-shadow: 0 1px 1px 0 #999;
+    -webkit-box-shadow: 0 1px 1px 0 #999;
+}
+
+
+	.panel .panel-title {
+		background-color: #B0252E;
+		margin: 0 -20px 0;
+		padding: 0 20px 10px;
+		height: 30px;
+		color: #fff;
+		-webkit-border-top-left-radius: 6px;
+		-webkit-border-top-right-radius: 6px;
+		-moz-border-radius-topleft: 6px;
+		-moz-border-radius-topright: 6px;
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+	}
+
+		.panel .panel-title h3 {
+			margin: 0;
+			padding: 0;
+			line-height: 40px;
+		}
+
+		.panel .panel-title .aappl-icon {
+			margin-right: 12px;
+		}
+		
+	.panel .panel-content {
+		line-height: 19px;
+	}
+
 /*~*~*~*~*~*~*~* Cofirmation Dialog *~*~*~*~*~*~*~*/
 
 .confirmation {
 	text-align: center;
-	font-size: 1.2em;
+	/*font-size: 1.2em;*/
 	font-weight: bold;
 	margin-bottom: 4px;
 }
@@ -293,7 +340,7 @@ ol.mic-instructions li {
 /* applied to the header, content and footer */
 .container {
 	max-width: 960px;
-	margin: 0 auto;
+	margin: 0 auto 24px;
 }
 
 /* begin footer fix */
