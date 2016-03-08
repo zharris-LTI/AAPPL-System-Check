@@ -31,15 +31,14 @@ Description: This page performs the following checks on the client:
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="css/normalize.css"/>	
-<!-- <link rel="stylesheet" href="http://aappldemo.actfltesting.org/css/aappl-test.css" /> -->
-<link rel="stylesheet" href="css/system-check.css"/>	
+<link rel="stylesheet" href="css/system-check.css?ver1.0"/>	
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/system-check.js"></script>
+<script type="text/javascript" src="js/system-check.js?ver1.0"></script>
 
 <script src="js/swfobject.js"></script>
 
-<title>AAPPL System Check</title>
+<title>AAPPL Measure System Check</title>
 
 </head>
 <body>
@@ -55,6 +54,8 @@ Description: This page performs the following checks on the client:
 			
 			<div class="content">
 				<div class="container">
+					
+					<h2>AAPPL Measure System Check</h2>
 					
 					<div id="pass-message-top" class="panel system-msg pass hide">
 						<div class="panel-content">
@@ -147,7 +148,7 @@ Description: This page performs the following checks on the client:
 										<p class="audio-instructions">Click <span class="play-text">Play</span> to test audio.</p>
 										<div id="audio-dialog" class="confirmation">
 											<p>Did you hear the audio?</p>
-											<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
+											<a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
 										</div>
 										<div class="error-msg hide">
 											<p>Before you begin the test, please contact your system administrator to configure your audio settings.</p>
@@ -183,7 +184,7 @@ Description: This page performs the following checks on the client:
 											</ol>
 											<div id="mic-dialog" class="confirmation">
 												<p>Were you able to record your voice?</p>
-												<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
+												<a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
 											</div>
 											<div class="error-msg hide">
 												<p>Before you begin the test, please contact your system administrator to configure your microphone settings.</p>

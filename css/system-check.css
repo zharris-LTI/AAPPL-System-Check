@@ -295,6 +295,10 @@ ol.mic-instructions li {
 
 /*~*~*~*~*~*~*~* General Styles *~*~*~*~*~*~*~*/
 
+.content > .container h2 {
+	margin-top: 52px;
+}
+
 .centered {
 	text-align: center;
 }
