@@ -97,15 +97,11 @@ a {
 }
 
 .system-check-table tr:nth-child(odd) {
-	background-color: #eee;
-}
-
-.system-check-table tr:nth-child(even) {
 	background-color: #d9e4ee;
 }
 
-.system-check-table tr:nth-child(1) {
-	background-color: #fff;
+.system-check-table tr:nth-child(even) {
+	background-color: #eee;
 }
 
 .system-check-table tr td:nth-child(1) {
@@ -220,10 +216,6 @@ a {
 
 /*~*~*~*~*~*~*~* Pass/Fail Icons *~*~*~*~*~*~*~*/
 
-.icon-key {
-	list-style: none;
-}
-
 .system-check-table .fa {
 	font-size: 16px;
 }
@@ -256,12 +248,10 @@ a {
 	display: none;
 }
 
-.flash-control,
-#keyboardCheck {
+.flash-control {
 	display: block;
 	text-align: center;
 	margin: 0 auto;
-	position: relative; 
 }	
 
 /*~*~*~*~*~*~*~* Mic/Audio Instructions *~*~*~*~*~*~*~*/

@@ -58,12 +58,12 @@ Description: This page performs the following checks on the client:
 					
 					<div id="pass-message-top" class="panel system-msg pass hide">
 						<div class="panel-content">
-							<i class="fa fa-check"></i> <p>Congratulations! You have passed all of the system checks.</p>
+							<i class="fa fa-check"></i> <p>Congratulations! You've passed all of the system checks.</p>
 						</div>
 					</div>
 					
 					<div id="fail-message-top" class="panel system-msg error hide">
-						<i class="fa fa-times"></i> <p>Your computer does not meet the minimum requirements. Please contact your system administrator for support.</p>
+						<i class="fa fa-times"></i> <p>Your computer does not meet the minimum requirements. Please contact your system administrator.</p>
 					</div>
 
 					<noscript>
@@ -82,25 +82,15 @@ Description: This page performs the following checks on the client:
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td colspan="3"></td>
-								<td>
-									<ul class="icon-key">
-										<li><i class="fa fa-check"></i> - Yes</li>
-										<li><i class="fa fa-times"></i> - No</li>
-										<li><i class="waiting-static"></i> - Waiting</li>
-									</ul>
-								</td>
-							</tr>
 							
 							<!--****************************** ROW 1 - Bandwidth ******************************-->						 
 							<tr>
-								<td>Internet Connection Speed</td>
-								<td><p>Your internet connect speed must be at least <span id="min-connection"></span> Kbps per second, per tester.</p></td>
+								<td>Bandwidth</td>
+								<td><p>Your connection speed must be at least <span id="min-connection"></span> Kbps per second.</p></td>
 								<td>
 									<p id="progress"></p>
 									<div class="error-msg hide">
-										<p>Your internet connection speed is not fast enough to take the test. Please contact your system administrator.</p>
+										<p>Your connection is too slow. Please contact your system administrator.</p>
 									</div>
 								</td>
 								<td id="bandwidthCheckImg"><i class="check-status waiting"></i></td>
@@ -116,11 +106,11 @@ Description: This page performs the following checks on the client:
 										<div id="portCheck"></div>
 									</div>
 									<div class="installFlash error-msg">
-										<p>In order to check Port 1935 your browser must have Flash installed and un-blocked.</p> 
+										<p>To check Port 1935 your browser must have Flash installed and un-blocked.</p> 
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
 									</div>
 									<div class="upgradeFlash error-msg">
-										<p>In order to check Port 1935 you must have the latest version of Flash.</p>
+										<p>To check Port 1935 the latest version of Flash is required.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
 									</div>
 								</td>
@@ -130,15 +120,15 @@ Description: This page performs the following checks on the client:
 							<!--****************************** ROW 3 - Flash Player ******************************-->							 
 							<tr>
 								<td>Flash Player</td>
-								<td><p>You must have Flash Player version <span class="min-version-number"></span> or higher installed.</p></td>
+								<td><p>Flash Player version <span class="min-version-number"></span> or higher required.</p></td>
 								<td>
 									<div class="displayFlash"><p>Flash Player version <span id="version-number"></span></p></div>
 									<div class="installFlash error-msg">
-										<p>In order to take the test your browser must have Flash installed and un-blocked.</p> 
+										<p>Your browser must have Flash installed and un-blocked.</p> 
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
 									</div>
 									<div class="upgradeFlash error-msg">
-										<p>Flash Player version <span id="version-number-low"></span> is installed. In order to take the test your browser must have the latest version of Flash.</p>
+										<p>Flash Player version <span id="version-number-low"></span> is installed. Your browser must have the latest version of Flash installed.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
 									</div>
 								</td>
@@ -154,21 +144,21 @@ Description: This page performs the following checks on the client:
 										<div class="flash-control">
 											<div id="audioPlayer"></div>
 										</div>
-										<p class="audio-instructions">Click <span class="play-text">Play</span> to test your audio.</p>
+										<p class="audio-instructions">Click <span class="play-text">Play</span> to test audio.</p>
 										<div id="audio-dialog" class="confirmation">
-											<p>Were you able to listen to the audio?</p>
+											<p>Did you hear the audio?</p>
 											<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
 										</div>
 										<div class="error-msg hide">
-											<p>Before you begin the test, please contact your system administrator to correctly configure your audio settings.</p>
+											<p>Before you begin the test, please contact your system administrator to configure your audio settings.</p>
 										</div>
 									</div>
 									<div class="installFlash error-msg">
-										<p>In order to test your audio settings your browser must have Flash installed and un-blocked.</p>
+										<p>To test your audio settings your browser must have Flash installed and un-blocked.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
 									</div>
 									<div class="upgradeFlash error-msg">
-										<p>In order to test your audio settings your browser must have the latest version of Flash.</p>
+										<p>To test your audio settings the latest version of Flash is required.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
 									</div>			
 								</td>
@@ -187,8 +177,8 @@ Description: This page performs the following checks on the client:
 											</div>
 											<ol class="mic-instructions">
 												<li>Click '<strong>Allow</strong>', if prompted by your browser.</li>
-												<li>Click <span class="record-text">Record</span> and talk into your microphone.</li>
-												<li>Click <span class="stop-text">Stop</span> when you are done recording.</li>
+												<li>Click <span class="record-text">Record</span> and speak into your microphone.</li>
+												<li>Click <span class="stop-text">Stop</span> when you are finished recording.</li>
 												<li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
 											</ol>
 											<div id="mic-dialog" class="confirmation">
@@ -196,7 +186,7 @@ Description: This page performs the following checks on the client:
 												<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
 											</div>
 											<div class="error-msg hide">
-												<p>Before you begin the test, please contact your system administrator to correctly configure your microphone settings.</p>
+												<p>Before you begin the test, please contact your system administrator to configure your microphone settings.</p>
 											</div>											
 										</div>
 										<div id="NoMicDiv" class="hide">
@@ -205,17 +195,17 @@ Description: This page performs the following checks on the client:
 												<a class="generic-button failCheck">Yes</a><a class="generic-button passCheck">No</a>
 											</div>											
 											<div class="error-msg hide">
-												<p>In order to take a Speaking Assessment your computer is required to have a working microphone.</p>
-												<p>Please contact your system administrator to connect a microphone to your computer.</p>
+												<p>To take a Speaking Assessment your computer is required to have a working microphone.</p>
+												<p>Please contact your system administrator.</p>
 											</div>
 										</div>
 									</div>
 									<div class="installFlash error-msg">
-										<p>In order to test your microphone settings your browser must have Flash installed and un-blocked.</p>
+										<p>To test your microphone settings your browser must have Flash installed and un-blocked.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
 									</div>
 									<div class="upgradeFlash error-msg">
-										<p>In order to test your microphone settings your browser must have the latest version of Flash.</p>
+										<p>To test your microphone settings the latest version of Flash is required.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
 									</div>
 								</td>
@@ -225,10 +215,10 @@ Description: This page performs the following checks on the client:
 							<!--****************************** ROW 6 - Target Language ******************************-->
 							<tr>
 								<td>Language Support</td>
-								<td><p>For the Writing Assessment, the candidates will need to be able to type in the target language. Please test your system here before proceeding with the test.</p></td>
+								<td><p>For the Writing Assessment, candidates need to type in the target language. Please test your system here before proceeding with the test.</p></td>
 								<td>
 									<div class="displayFlash">
-										<p>Try typing in the box below using the target language. Click on the buttons to change the direction of the text.</p>
+										<p>Type in the box below using the target language. Click on the buttons to change the direction of the text.</p>
 										<div class="flash-control">
 											<div id="keyboardCheck"></div>
 										</div>
@@ -241,15 +231,15 @@ Description: This page performs the following checks on the client:
 											<a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
 										</div>
 										<div class="error-msg hide">
-											<p>Before you begin the test, please contact your system administrator to correctly configure your keyboard settings.</p>
+											<p>Before you begin the test, please contact your system administrator to configure your keyboard settings.</p>
 										</div>
 									</div>
 									<div class="installFlash error-msg">
-										<p>In order to test your keyboard your browser must have Flash installed and un-blocked.</p>
+										<p>To test your keyboard your browser must have Flash installed and un-blocked.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
 									</div>
 									<div class="upgradeFlash error-msg">
-										<p>In order to test your keyboard your browser must have the latest version of Flash.</p>
+										<p>To test your keyboard the latest version of Flash is required.</p>
 										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
 									</div>			
 								</td>
@@ -257,17 +247,17 @@ Description: This page performs the following checks on the client:
 							</tr>
 	
 						</tbody>
-					</table>
-
+					</table>					
+					
 					<div id="pass-message-bottom" class="panel system-msg pass hide">
 						<div class="panel-content">
-							<i class="fa fa-check"></i> <p>Congratulations! You have passed all of the system checks.</p>
+							<i class="fa fa-check"></i> <p>Congratulations! You've passed all of the system checks.</p>
 						</div>
 					</div>
 					
 					<div id="fail-message-bottom" class="panel system-msg error hide">
 						<div class="panel-content">
-							<i class="fa fa-times"></i> <p>Your computer does not meet the minimum requirements. Please contact your system administrator for support.</p>
+							<i class="fa fa-times"></i> <p>Your computer does not meet the minimum requirements. Please contact your system administrator.</p>
 						</div>
 					</div>					
 				

@@ -14,7 +14,7 @@ $(document).ready(function(){
 		
 		systemCheckTable.show();
 		minConnection.html(commaSeparateNumber(BandwidthRequired));
-		connectionCheck.html('Please wait while your connection speed is being calculated...');
+		connectionCheck.html('Please wait while we calculate your connection speed ...');
 		window.setTimeout(MeasureConnectionSpeed, 1);
 	};
 
@@ -44,7 +44,7 @@ $(document).ready(function(){
 			
 			(speedKbps < BandwidthRequired)? $('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-times').parents('tr').find('.error-msg').slideDown():$('#bandwidthCheckImg i').removeClass().addClass('check-status fa fa-check');
 			
-			connectionCheck.html('Your internet connection speed is: ' + commaSeparateNumber(speedKbps) + ' Kbps');
+			connectionCheck.html('Your connection speed is: ' + commaSeparateNumber(speedKbps) + ' Kbps');
 			checkRequirements();
 		}
 	}
@@ -255,9 +255,8 @@ $(document).ready(function(){
 	//*~*~*~*~*~*~*~*Intenet Explorer hacks*~*~*~*~*~*~*~*//
 
 	//zebra striping for ie8
-	$('.ie8 .system-check-table tr:odd').css('background-color','#eee');
-	$('.ie8 .system-check-table tr:even').css('background-color','#d9e4ee');
-	$('.ie8 .system-check-table tr:eq(1)').css('background-color','#fff');	
+	$('.ie8 .system-check-table tr:odd').css('background-color','#d9e4ee');
+	$('.ie8 .system-check-table tr:even').css('background-color','#eee');
 
 	//column styles for ie8
 	$('.ie8 .system-check-table tr td:nth-child(1)').css('width','150px').css('text-align','center').css('font-weight','bold');	
