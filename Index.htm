@@ -2,14 +2,14 @@
 <!--
 ******************************************************************************************
 Description: This page performs the following checks on the client:
-	1) Browser Name and Version with OS
-	2) Screen Resolution
-	3) Javascript Enabled and Version
-	4) Cookies Enabled
-	5) Bandwidth Speed
-	6) Flash Player Installed and Version
-	7) Microphone Test
-	8) Target Language
+    1) Browser Name and Version with OS
+    2) Screen Resolution
+    3) Javascript Enabled and Version
+    4) Cookies Enabled
+    5) Bandwidth Speed
+    6) Flash Player Installed and Version
+    7) Microphone Test
+    8) Target Language
 
 04/10/03 Olga Perrone, Original work
 06/16/09 Design by Smith Originals for AAPPL--http://aappl.lti-inc.net
@@ -17,257 +17,272 @@ Description: This page performs the following checks on the client:
 04/21/10 Removed QuickTime
 ******************************************************************************************
 -->
-
 <!--[if lte IE 8 ]><html class="ie ie8" lang="en-US"> <![endif]-->
 <!--[if IE 9 ]><html class="ie ie9" lang="en-US"> <![endif]-->
 <!--[if IE ]><html class="ie" lang="en-US"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--><html lang="en-US"><!--<![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en-US">
+<!--<![endif]-->
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
-<meta HTTP-EQUIV="expires" CONTENT="0">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0">
 
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="css/normalize.css"/>
-<link rel="stylesheet" href="css/system-check.css?ver1.0"/>	
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/system-check.css?ver1.0" />
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/system-check.js?ver1.0"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/system-check.js?ver1.0"></script>
 
-<script src="js/swfobject.js"></script>
+    <script src="js/swfobject.js"></script>
 
-<title>AAPPL Measure System Check</title>
+    <title>AAPPL Measure System Check</title>
 
 </head>
 <body>
 
-	<div class="wrap">
-		<div class="main">
-			
-			<div class="header">
-				<div class="container">
-					<img class="aappl-logo" src="media/logo.png" />
-				</div>
-			</div><!-- end head -->
-			
-			<div class="content">
-				<div class="container">
-					<div class="panel system-check-panel">
-						<div class="panel-title">
-							<h3><i class="panel-title-icon fa fa-wrench"></i> AAPPL System Check</h3>
-						</div>
-						<div class="panel-content centered">
-							<p>Once you have successfully completed all of the system checks below you may click on 'Go to Sign In' to login to your test.</p>
-							<a id="login-btn" class="generic-button disabled">Go to Sign In</a>
-						</div>
-					</div>
-					
-					<noscript>
-						<div class="panel system-msg error">
-							<i class="fa fa-times"></i> <p>In order to perform the system check and take the AAPPL Test, you must have javascript enabled. Please contact your system administrator.</p>
-						</div>
-					</noscript>
-					
-					<table id="system-check" class="system-check-table hide">
-						<thead>
-							<tr>
-								<th>CRITERIA</th>
-								<th>MINIMUM REQUIREMENTS</th>
-								<th>YOUR SYSTEM INFORMATION</th>
-								<th>MEETS REQUIREMENTS</th>
-							</tr>
-						</thead>
-						<tbody>
-							
-							<!--****************************** ROW 1 - Bandwidth ******************************-->						 
-							<tr>
-								<td>Bandwidth</td>
-								<td><p>Your connection speed must be at least <span id="min-connection"></span> Kbps per second.</p></td>
-								<td>
-									<p id="progress"></p>
-									<div class="error-msg hide">
-										<p>Your connection is too slow. Please contact your system administrator.</p>
-									</div>
-								</td>
-								<td id="bandwidthCheckImg"><i class="check-status waiting"></i></td>
-							</tr>
-							
-							<!--****************************** ROW 2 - Ports ******************************--> 
-							<tr>
-								<td>Ports</td>
-								<td><p>Port 1935 must be open in order for Flash to communicate with your computer.</p></td>
-								<td>
-									<div class="displayFlash">
-										<div id="portCheckMsg"></div>
-										<div id="portCheck"></div>
-									</div>
-									<div class="installFlash error-msg">
-										<p>To check Port 1935 your browser must have Flash installed and un-blocked.</p> 
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
-									</div>
-									<div class="upgradeFlash error-msg">
-										<p>To check Port 1935 the latest version of Flash is required.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
-									</div>
-								</td>
-								<td id="portsCheckImg"><i class="check-status waiting"></i></td>
-							</tr>
+    <div class="wrap">
+        <div class="main">
 
-							<!--****************************** ROW 3 - Flash Player ******************************-->							 
-							<tr>
-								<td>Flash Player</td>
-								<td><p>Flash Player version <span class="min-version-number"></span> or higher required.</p></td>
-								<td>
-									<div class="displayFlash"><p>Flash Player version <span id="version-number"></span></p></div>
-									<div class="installFlash error-msg">
-										<p>Your browser must have Flash installed and un-blocked.</p> 
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
-									</div>
-									<div class="upgradeFlash error-msg">
-										<p>Flash Player version <span id="version-number-low"></span> is installed. Your browser must have the latest version of Flash installed.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
-									</div>
-								</td>
-								<td id="flashCheckImg"><i class="check-status waiting"></i></td>
-							</tr>
+            <div class="header">
+                <div class="container">
+                    <img class="aappl-logo" src="media/logo.png" />
+                </div>
+            </div><!-- end head -->
 
-							<!--****************************** ROW 4 - MP3 Audio ******************************-->
-							<tr>
-								<td>Audio</td>
-								<td><p>Your computer must be able to playback audio</p></td>
-								<td>
-									<div class="displayFlash">
-										<div class="flash-control">
-											<div id="audioPlayer"></div>
-										</div>
-										<p class="audio-instructions">Click <span class="play-text">Play</span> to test audio.</p>
-										<div id="audio-dialog" class="confirmation">
-											<p>Did you hear the audio?</p>
-											<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
-										</div>
-										<div class="error-msg hide">
-											<p>Before you begin the test, please contact your system administrator to configure your audio settings.</p>
-										</div>
-									</div>
-									<div class="installFlash error-msg">
-										<p>To test your audio settings your browser must have Flash installed and un-blocked.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
-									</div>
-									<div class="upgradeFlash error-msg">
-										<p>To test your audio settings the latest version of Flash is required.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
-									</div>			
-								</td>
-								<td id="MP3CheckImg"><i class="check-status waiting"></i></td>
-							</tr>
-							
-							<!--****************************** ROW 5 - Microphone ******************************-->
-							<tr>
-								<td>Microphone</td>
-								<td><p>A microphone is required for the Speaking Assessment.</p></td>
-								<td>
-									<div class="displayFlash">
-										<div id="MicFlashDiv">
-											<div class="flash-control">
-												<div id="micCheck"></div>
-											</div>
-											<ol class="mic-instructions">
-												<li>Click '<strong>Allow</strong>', if prompted by your browser.</li>
-												<li>Click <span class="record-text">Record</span> and speak into your microphone.</li>
-												<li>Click <span class="stop-text">Stop</span> when you are finished recording.</li>
-												<li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
-											</ol>
-											<div id="mic-dialog" class="confirmation">
-												<p>Were you able to record your voice?</p>
-												<a class="generic-button passCheck disabled">Yes</a><a class="generic-button failCheck disabled">No</a>
-											</div>
-											<div class="error-msg hide">
-												<p>Before you begin the test, please contact your system administrator to configure your microphone settings.</p>
-											</div>											
-										</div>
-										<div id="NoMicDiv" class="hide">
-											<div id="no-mic-dialog" class="confirmation">
-												<p>Are you taking a Speaking Assessment?</p>
-												<a class="generic-button failCheck">Yes</a><a class="generic-button passCheck">No</a>
-											</div>											
-											<div class="error-msg hide">
-												<p>To take a Speaking Assessment your computer is required to have a working microphone.</p>
-												<p>Please contact your system administrator.</p>
-											</div>
-										</div>
-									</div>
-									<div class="installFlash error-msg">
-										<p>To test your microphone settings your browser must have Flash installed and un-blocked.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
-									</div>
-									<div class="upgradeFlash error-msg">
-										<p>To test your microphone settings the latest version of Flash is required.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
-									</div>
-								</td>
-								<td id="microphoneCheckImg"><i class="check-status waiting"></i></td>
-							</tr>
+            <div class="content">
+                <div class="container">
 
-							<!--****************************** ROW 6 - Target Language ******************************-->
-							<tr>
-								<td>Language Support</td>
-								<td><p>For the Writing Assessment, candidates need to type in the target language.</p></td>
-								<td>
-									<div class="displayFlash">
-										<p>Type in the box below using the target language. Click on the buttons to change the direction of the text.</p>
-										<div class="flash-control">
-											<div id="keyboardCheck"></div>
-										</div>
-										<p>
-											See Keyboard Setup/Use Instructions<br />
-											<a href="http://symbolcodes.tlt.psu.edu/bylanguage/arabic.html#win" target="_blank">Arabic</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/chinese.html#keyboard" target="_blank">Chinese</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/french.html#winalt" target="_blank">French</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/german.html#winalt" target="_blank">German</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/russian.html#keyboard" target="_blank">Russian</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/spanish.html#winalt" target="_blank">Spanish</a>
-										</p>
-										<div class="confirmation">
-											<p>Can you type in the box above using the target language?</p>
-											<a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
-										</div>
-										<div class="error-msg hide">
-											<p>Before you begin the test, please contact your system administrator to configure your keyboard settings.</p>
-										</div>
-									</div>
-									<div class="installFlash error-msg">
-										<p>To test your keyboard your browser must have Flash installed and un-blocked.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
-									</div>
-									<div class="upgradeFlash error-msg">
-										<p>To test your keyboard the latest version of Flash is required.</p>
-										<p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
-									</div>			
-								</td>
-								<td id="languageCheckImg"><i class="check-status waiting"></i></td>
-							</tr>
-	
-						</tbody>
-					</table>
+                    <h2>AAPPL Measure System Check</h2>
 
-				
-				</div><!-- end container -->
-			</div><!-- end content -->
-			
-		</div><!-- end main-content -->
-	</div><!-- end wrap -->
-	
-	<div class="footer">
-		<div class="container">			
-			<div class="footer-col">
-				<img class="actfl-footer-logo" src="media/logo-sm-actfl.png" />
-			</div>
-			<div class="footer-col">
-				<object class="lti-footer-logo"  type="image/svg+xml" data="media/LTI-logo-white.svg"><span class="lti-footer-logo"><img src="media/LTI-logo-white.png" /></span></object>
-			</div>			
-			<span class="footer-col footer-copy">
-				<p>&copy; ACTFL, All Rights Reserved.</p>
-				<p>Powered by &copy; Language Testing International</p>
-			</span>
-		</div>
-	</div><!-- end footer -->
+                    <div id="pass-message-top" class="panel system-msg pass hide">
+                        <div class="panel-content">
+                            <i class="fa fa-check"></i> <p>Congratulations! You've passed all of the system checks.</p>
+                        </div>
+                    </div>
+
+                    <div id="fail-message-top" class="panel system-msg error hide">
+                        <i class="fa fa-times"></i> <p>Your computer does not meet the minimum requirements. Please contact your system administrator.</p>
+                    </div>
+
+                    <noscript>
+                        <div class="panel system-msg error">
+                            <i class="fa fa-times"></i> <p>In order to perform the system check and take the AAPPL Test, you must have javascript enabled. Please contact your system administrator.</p>
+                        </div>
+                    </noscript>
+
+                    <table id="system-check" class="system-check-table hide">
+                        <thead>
+                            <tr>
+                                <th>CRITERIA</th>
+                                <th>MINIMUM REQUIREMENTS</th>
+                                <th>YOUR SYSTEM INFORMATION</th>
+                                <th>MEETS REQUIREMENTS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!--****************************** ROW 1 - Bandwidth ******************************-->
+                            <tr>
+                                <td>Bandwidth</td>
+                                <td><p>Your connection speed must be at least <span id="min-connection"></span> Kbps per second.</p></td>
+                                <td>
+                                    <p id="progress"></p>
+                                    <div class="error-msg hide">
+                                        <p>Your connection is too slow. Please contact your system administrator.</p>
+                                    </div>
+                                </td>
+                                <td id="bandwidthCheckImg"><i class="check-status waiting"></i></td>
+                            </tr>
+
+                            <!--****************************** ROW 2 - Ports ******************************-->
+                            <tr>
+                                <td>Ports</td>
+                                <td><p>Port 1935 must be open in order for Flash to communicate with your computer.</p></td>
+                                <td>
+                                    <div class="displayFlash">
+                                        <div id="portCheckMsg"></div>
+                                        <div id="portCheck"></div>
+                                    </div>
+                                    <div class="installFlash error-msg">
+                                        <p>To check Port 1935 your browser must have Flash installed and un-blocked.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                    <div class="upgradeFlash error-msg">
+                                        <p>To check Port 1935 the latest version of Flash is required.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                </td>
+                                <td id="portsCheckImg"><i class="check-status waiting"></i></td>
+                            </tr>
+
+                            <!--****************************** ROW 3 - Flash Player ******************************-->
+                            <tr>
+                                <td>Flash Player</td>
+                                <td><p>Flash Player version <span class="min-version-number"></span> or higher required.</p></td>
+                                <td>
+                                    <div class="displayFlash"><p>Flash Player version <span id="version-number"></span></p></div>
+                                    <div class="installFlash error-msg">
+                                        <p>Your browser must have Flash installed and un-blocked.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                    <div class="upgradeFlash error-msg">
+                                        <p>Flash Player version <span id="version-number-low"></span> is installed. Your browser must have the latest version of Flash installed.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                </td>
+                                <td id="flashCheckImg"><i class="check-status waiting"></i></td>
+                            </tr>
+
+                            <!--****************************** ROW 4 - MP3 Audio ******************************-->
+                            <tr>
+                                <td>Audio</td>
+                                <td><p>Your computer must be able to playback audio</p></td>
+                                <td>
+                                    <div class="displayFlash">
+                                        <div class="flash-control">
+                                            <div id="audioPlayer"></div>
+                                        </div>
+                                        <p class="audio-instructions">Click <span class="play-text">Play</span> to test audio.</p>
+                                        <div id="audio-dialog" class="confirmation">
+                                            <p>Did you hear the audio?</p>
+                                            <a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
+                                        </div>
+                                        <div class="error-msg hide">
+                                            <p>Before you begin the test, please contact your system administrator to configure your audio settings.</p>
+                                        </div>
+                                    </div>
+                                    <div class="installFlash error-msg">
+                                        <p>To test your audio settings your browser must have Flash installed and un-blocked.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                    <div class="upgradeFlash error-msg">
+                                        <p>To test your audio settings the latest version of Flash is required.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                </td>
+                                <td id="MP3CheckImg"><i class="check-status waiting"></i></td>
+                            </tr>
+
+                            <!--****************************** ROW 5 - Microphone ******************************-->
+                            <tr>
+                                <td>Microphone</td>
+                                <td><p>A microphone is required for the Speaking Assessment.</p></td>
+                                <td>
+                                    <div class="displayFlash">
+                                        <div id="MicFlashDiv">
+                                            <div class="flash-control">
+                                                <div id="micCheck"></div>
+                                            </div>
+                                            <ol class="mic-instructions">
+                                                <li>Click '<strong>Allow</strong>', if prompted by your browser.</li>
+                                                <li>Click <span class="record-text">Record</span> and speak into your microphone.</li>
+                                                <li>Click <span class="stop-text">Stop</span> when you are finished recording.</li>
+                                                <li>Click <span class="listen-text">Listen</span> to hear your recorded voice.</li>
+                                            </ol>
+                                            <div id="mic-dialog" class="confirmation">
+                                                <p>Were you able to record your voice?</p>
+                                                <a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
+                                            </div>
+                                            <div class="error-msg hide">
+                                                <p>Before you begin the test, please contact your system administrator to configure your microphone settings.</p>
+                                            </div>
+                                        </div>
+                                        <div id="NoMicDiv" class="hide">
+                                            <div id="no-mic-dialog" class="confirmation">
+                                                <p>Are you taking a Speaking Assessment?</p>
+                                                <a class="generic-button failCheck">Yes</a><a class="generic-button passCheck">No</a>
+                                            </div>
+                                            <div class="error-msg hide">
+                                                <p>To take a Speaking Assessment your computer is required to have a working microphone.</p>
+                                                <p>Please contact your system administrator.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="installFlash error-msg">
+                                        <p>To test your microphone settings your browser must have Flash installed and un-blocked.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                    <div class="upgradeFlash error-msg">
+                                        <p>To test your microphone settings the latest version of Flash is required.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                </td>
+                                <td id="microphoneCheckImg"><i class="check-status waiting"></i></td>
+                            </tr>
+
+                            <!--****************************** ROW 6 - Target Language ******************************-->
+                            <tr>
+                                <td>Language Support</td>
+                                <td><p>For the Writing Assessment, candidates need to type in the target language.</p></td>
+                                <td>
+                                    <div class="displayFlash">
+                                        <p>Type in the box below using the target language. Click on the buttons to change the direction of the text.</p>
+                                        <div class="flash-control">
+                                            <div id="keyboardCheck"></div>
+                                        </div>
+                                        <p>
+                                            See Keyboard Setup/Use Instructions<br />
+                                            <a href="http://symbolcodes.tlt.psu.edu/bylanguage/arabic.html#win" target="_blank">Arabic</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/chinese.html#keyboard" target="_blank">Chinese</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/french.html#winalt" target="_blank">French</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/german.html#winalt" target="_blank">German</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/russian.html#keyboard" target="_blank">Russian</a> <a href="http://symbolcodes.tlt.psu.edu/bylanguage/spanish.html#winalt" target="_blank">Spanish</a>
+                                        </p>
+                                        <div class="confirmation">
+                                            <p>Can you type in the box above using the target language?</p>
+                                            <a class="generic-button passCheck">Yes</a><a class="generic-button failCheck">No</a>
+                                        </div>
+                                        <div class="error-msg hide">
+                                            <p>Before you begin the test, please contact your system administrator to configure your keyboard settings.</p>
+                                        </div>
+                                    </div>
+                                    <div class="installFlash error-msg">
+                                        <p>To test your keyboard your browser must have Flash installed and un-blocked.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">install Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                    <div class="upgradeFlash error-msg">
+                                        <p>To test your keyboard the latest version of Flash is required.</p>
+                                        <p>Please <a href="http://www.adobe.com/go/getflashplayer" target="_blank">upgrade Flash</a> or contact your system administrator.</p>
+                                    </div>
+                                </td>
+                                <td id="languageCheckImg"><i class="check-status waiting"></i></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div id="pass-message-bottom" class="panel system-msg pass hide">
+                        <div class="panel-content">
+                            <i class="fa fa-check"></i> <p>Congratulations! You've passed all of the system checks.</p>
+                        </div>
+                    </div>
+
+                    <div id="fail-message-bottom" class="panel system-msg error hide">
+                        <div class="panel-content">
+                            <i class="fa fa-times"></i> <p>Your computer does not meet the minimum requirements. Please contact your system administrator.</p>
+                        </div>
+                    </div>
+
+                </div><!-- end container -->
+            </div><!-- end content -->
+
+        </div><!-- end main-content -->
+    </div><!-- end wrap -->
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <img class="actfl-footer-logo" src="media/logo-sm-actfl.png" />
+            </div>
+            <div class="footer-col">
+                <object class="lti-footer-logo" type="image/svg+xml" data="media/LTI-logo-white.svg"><span class="lti-footer-logo"><img src="media/LTI-logo-white.png" /></span></object>
+            </div>
+            <span class="footer-col footer-copy">
+                <p>&copy; ACTFL, All Rights Reserved.</p>
+                <p>Powered by &copy; Language Testing International</p>
+            </span>
+        </div>
+    </div><!-- end footer -->
 
 </body>
 </html>

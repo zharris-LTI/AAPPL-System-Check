@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	var BandwidthRequired = 1000; // 1500 is 1.5 Mbps or T1
 
-	var imageAddr = "http://support.lti-inc.net/aappl-system-check/media/31120037-5mb.jpg"; 
+	var imageAddr = "http://www.languagetesting.com/wp-content/uploads/2016/08/31120037-5mb.jpg";
 	var downloadSize = 4995374; //bytes
 
 	window.onload = function() {
@@ -94,7 +94,7 @@ $(document).ready(function(){
 
 	//port check params
 	var portFlashVars = {
-		FmsUrl : 'BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com',
+	    FmsUrl: 'BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com',
 		FmsAppName : 'aappl'
 	};
 
@@ -148,11 +148,11 @@ $(document).ready(function(){
 	
 	//mic check params
 	var micFlashVars = {
-		FilePath : 'rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/'
+	    FilePath: 'rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/'
 	};
 
 	var micParams = {
-		FilePath : 'rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/'
+	    FilePath: 'rtmp://BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/aappl/volcheck/'
 	};
 
 	//embed mic check flash file
