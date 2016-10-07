@@ -92,35 +92,102 @@ $(document).ready(function(){
 	var portCheckMsg = $('#portCheckMsg');
 	portCheckMsg.html('<p>Checking port...</p>');
 
-	//port check params
-	var portFlashVars = {
-	    FmsUrl: 'BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com',
-		FmsAppName : 'aappl'
-	};
+    $.ajax({
+        url: 'http://dig.jsondns.org/IN/BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com/A',
+        type: 'GET',
+        data: "",
+        contentType: "application/json; charset=utf-8",
+        dataType: "jsonp",
+		success: function (data) {
+			var dnsIpAddresses = getIPs(data);
+			//console.log(dnsIpAddresses);
+			
+			//port check params
+			var portFlashVars = {
+				FmsUrl: 'BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com',
+				Dnslookup: dnsIpAddresses,//'apple|banana|cherry',
+				FmsAppName : 'aappl'
+			};
 
-	//embed port check flash file
-	swfobject.embedSWF(	'flash/portTester.swf', 
-						'portCheck', 
-						'0', 
-						'0', 
-						'10.0.0', 
-						false, //Express Install
-						portFlashVars); //FlashVars
+			swfobject.embedSWF(	'flash/portTester.v1.1.swf', 
+								'portCheck', 
+								'0', 
+								'0', 
+								'10.0.0', 
+								false, //Express Install
+								portFlashVars); //FlashVars
+					
+			window.setSuccess = function setSuccess() {
+				portCheckMsg.html('<p>Port 1935 is open.</p>');
+				$('#portsCheckImg i').removeClass().addClass('check-status fa fa-check');
+				checkRequirements();
+			}
 
-	window.setSuccess = function setSuccess() {
-		portCheckMsg.html('<p>Port 1935 is open.</p>');
-		$('#portsCheckImg i').removeClass().addClass('check-status fa fa-check');
-		checkRequirements();
+			window.setFail = function setFail(param) {
+				param = formatIPList(param);
+				portCheckMsg.html('<div class="error-msg"><p>Port 1935 is closed. Please contact your system administrator.</p></div>');
+				$('#portCheckMsg .error-msg').append('<a class="show-toggle generic-button"><span>Show Blocked IP Addresses</span><span class="hide">Hide</span></a><div class="hide hidden-block">' + param + '</div>');
+				$('#portsCheckImg i').removeClass().addClass('check-status fa fa-times');				
+				checkRequirements();
+				showToggle();
+			}			
+		},
+		error: function (e) {			
+			//log error message
+			console.log(e.message);
+			
+			//port check params
+			var portFlashVars = {
+				FmsUrl: 'BL-AAPPL-AMS-777299592.us-west-2.elb.amazonaws.com',
+				Dnslookup: '',
+				FmsAppName : 'aappl'
+			};
+
+			swfobject.embedSWF(	'flash/portTester.v1.1.swf', 
+								'portCheck', 
+								'0', 
+								'0', 
+								'10.0.0', 
+								false, //Express Install
+								portFlashVars); //FlashVars
+					
+			window.setSuccess = function setSuccess() {
+				portCheckMsg.html('<p>Port 1935 is open.</p>');
+				$('#portsCheckImg i').removeClass().addClass('check-status fa fa-check');
+				checkRequirements();
+			}
+
+			window.setFail = function setFail(param) {
+				param = formatIPList(param);
+				portCheckMsg.html('<div class="error-msg"><p>Port 1935 is closed. Please contact your system administrator.</p></div>');
+				$('#portsCheckImg i').removeClass().addClass('check-status fa fa-times');				
+				checkRequirements();
+			}					
+		}
+    });
+	
+	function getIPs(jsonObj) {
+		var jsonValString = '';
+		if(jsonObj !== '' && jsonObj !== null) {
+			$.each(jsonObj.answer, function(i) {
+				(i + 1 < jsonObj.answer.length) ? jsonValString += (jsonObj.answer[i].rdata) + '|': jsonValString += (jsonObj.answer[i].rdata);
+			});
+		}
+		return jsonValString;
 	}
 
-	window.setFail = function setFail() {
-		portCheckMsg.html('<div class="error-msg"><p>Port 1935 is closed. Please contact your system administrator.</p></div>');
-		$('#portsCheckImg i').removeClass().addClass('check-status fa fa-times');				
-		checkRequirements();
+	function showToggle() {
+		$('a.show-toggle').click(function(){
+			$(this).children('span').toggle();
+			$(this).next('div').toggle();
+		});
 	}
-
-
-
+	
+	function formatIPList(list) {
+		var formattedList = list.replace(/\|/gi, '<br>');
+		return formattedList;
+	}
+	
 	//*~*~*~*~*~*~*~*Audio Test*~*~*~*~*~*~*~*//
 	
 	//audio check params

@@ -320,6 +320,11 @@ ol.mic-instructions li {
 	display: none;
 }
 
+.hidden-block {
+	margin-top: 12px;
+	color: #000;
+}
+
 /*********************** End Content Styles ***********************/
 
 /*********************** begin header ***********************/
