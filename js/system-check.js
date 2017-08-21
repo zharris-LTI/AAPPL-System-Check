@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	var BandwidthRequired = 1000; // 1500 is 1.5 Mbps or T1
 
-	var imageAddr = "http://www.languagetesting.com/wp-content/uploads/2016/08/31120037-5mb.jpg";
+	var imageAddr = "http://server1.actfltesting.org/bandwidth-image/31120037-5mb.jpg";
 	var downloadSize = 4995374; //bytes
 
 	window.onload = function() {
