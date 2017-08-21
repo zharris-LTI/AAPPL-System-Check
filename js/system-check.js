@@ -90,6 +90,7 @@ $(document).ready(function(){
 	//*~*~*~*~*~*~*~*Port Test*~*~*~*~*~*~*~*//
 	
 	var portCheckMsg = $('#portCheckMsg');
+	var portCheckEnabled = false;
 	portCheckMsg.html('<p>Checking port...</p>');
 
     $.ajax({
@@ -118,12 +119,14 @@ $(document).ready(function(){
 								portFlashVars); //FlashVars
 					
 			window.setSuccess = function setSuccess() {
+				portCheckEnabled = true;
 				portCheckMsg.html('<p>Port 1935 is open.</p>');
 				$('#portsCheckImg i').removeClass().addClass('check-status fa fa-check');
 				checkRequirements();
 			}
 
 			window.setFail = function setFail(param) {
+				portCheckEnabled = true;
 				param = formatIPList(param);
 				portCheckMsg.html('<div class="error-msg"><p>Port 1935 is closed. Please contact your system administrator.</p></div>');
 				$('#portCheckMsg .error-msg').append('<a class="show-toggle generic-button"><span>Show Blocked IP Addresses</span><span class="hide">Hide</span></a><div class="hide hidden-block">' + param + '</div>');
@@ -152,12 +155,14 @@ $(document).ready(function(){
 								portFlashVars); //FlashVars
 					
 			window.setSuccess = function setSuccess() {
+				portCheckEnabled = true;
 				portCheckMsg.html('<p>Port 1935 is open.</p>');
 				$('#portsCheckImg i').removeClass().addClass('check-status fa fa-check');
 				checkRequirements();
 			}
 
 			window.setFail = function setFail(param) {
+				portCheckEnabled = true;
 				param = formatIPList(param);
 				portCheckMsg.html('<div class="error-msg"><p>Port 1935 is closed. Please contact your system administrator.</p></div>');
 				$('#portsCheckImg i').removeClass().addClass('check-status fa fa-times');				
@@ -166,6 +171,14 @@ $(document).ready(function(){
 		}
     });
 	
+	window.setTimeout(function() {
+		if(!portCheckEnabled) {
+			// console.log('Timed out!');
+			portCheckMsg.html('<div class="error-msg">The port check has timed out.<br><br><a class="portCheckBackup" href="http://server1.actfltesting.org/FMSPortTester/FMSPortTester.html" target="_blank">Check port 1935 here</a> and confirm if you receive a success message.</div>');
+			$('.portCheckTimeout').show();
+		}
+	}, 10000);
+
 	function getIPs(jsonObj) {
 		var jsonValString = '';
 		if(jsonObj !== '' && jsonObj !== null) {
