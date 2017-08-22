@@ -174,7 +174,7 @@ $(document).ready(function(){
 	window.setTimeout(function() {
 		if(!portCheckEnabled) {
 			// console.log('Timed out!');
-			portCheckMsg.html('<div class="error-msg">The port check has timed out.<br><br><a class="portCheckBackup" href="http://server1.actfltesting.org/FMSPortTester/FMSPortTester.html" target="_blank">Check port 1935 here</a> and confirm if you receive a success message.</div>');
+			portCheckMsg.html('<div class="error-msg">The port check has timed out.<br><br><a class="portCheckBackup" href="http://server1.actfltesting.org/FMSPortTester/AAPPLFMSPortTester.html" target="_blank">Check port 1935 here</a> and confirm if you receive a success message.</div>');
 			$('.portCheckTimeout').show();
 		}
 	}, 10000);
